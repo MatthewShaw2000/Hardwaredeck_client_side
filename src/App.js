@@ -12,13 +12,14 @@ import Product from './pages/ProductPage';
 import Profile from './pages/ProfilePage';
 import Checkout from './pages/CheckoutPage';
 import Error from './pages/ErrorPage';
+import Login from './pages/LoginPage';
+import Register from './pages/RegisterPage';
 
 //Page Components
 import Header from './components/Header';
 import NavMenu from './components/NavMenu';
 import Footer from './components/Footer';
 import BackToTop from './components/BackToTop';
-import LoginRegister from './components/LoginRegistereOverlay';
 
 
 
@@ -30,14 +31,17 @@ export default function App()
 
   const [showNav, setShowNav] = useState(false);
   const [displayBackToTopBTN, setBackToTopBTN] = useState(false);
-  const [showLoginRegister, setShowLoginRegister] = useState(false);
+
   
   useEffect(() => {
-    alert("this is a test");
     const test = localStorage.getItem('logged_in');
     if(test)
     {
       setLoggedIn(test);
+    }
+    else
+    {
+      setLoggedIn(false);
     }
   }, []);
 
@@ -49,8 +53,6 @@ export default function App()
       const lines = menu_btn.querySelectorAll("div.line");
 
       setShowNav(!showNav);
-
-      logout();
 
       lines.forEach(line => {
           if(!showNav)
@@ -64,12 +66,6 @@ export default function App()
               document.body.classList.remove("stopScroll");
           }
       });
-  }
-
-  function logout()
-  {
-    setLoggedIn(false);
-    localStorage.clear();
   }
 
 
@@ -107,18 +103,14 @@ export default function App()
       <div className='grid_container'>
 
         <Header displayNavMethod={displayNav}
-                dislayLogin={setShowLoginRegister}
                 loggedIn={loggedIn}
+                setLoggedIn={setLoggedIn}
                 userDetails={user}/>
         
         <NavMenu displayNav={showNav} 
-                 dislayLogin={setShowLoginRegister}
                  displayNavMethod={displayNav} 
                  loggedIn={loggedIn} 
                  userDetails={user}/>
-
-
-        {showLoginRegister && <LoginRegister user={user} setLoggedIn={setLoggedIn} setShowLoginRegister={setShowLoginRegister}/>}
 
         <Routes>
           <Route path="/" element={<Home/>} index exact/>
@@ -127,6 +119,9 @@ export default function App()
           <Route path="/my_account/:userName" element={<Profile/>} exact/>
           <Route path="/checkout" element={<Checkout/>} exact/>
           <Route path="*" element={<Error/>}/>
+
+          <Route path="/signin" element={<Login user={user} setLoggedIn={setLoggedIn}/>}/>
+          <Route path="/register" element={<Register/>}/>
         </Routes>
         
         {displayBackToTopBTN && <BackToTop/>}

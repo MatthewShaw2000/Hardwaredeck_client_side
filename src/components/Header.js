@@ -1,6 +1,6 @@
 //React Components
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 //CSS 
 import '../css/style.css';
@@ -18,8 +18,18 @@ import {faCartShopping} from '@fortawesome/free-solid-svg-icons';
 
 
 
-export default function Header({displayNavMethod, dislayLogin, loggedIn, userDetails})
+export default function Header({displayNavMethod, loggedIn, setLoggedIn, userDetails})
 {
+
+    const navigate = useNavigate();
+    //Logout
+    function logout()
+    {
+        setLoggedIn(false);
+        navigate('/');
+        localStorage.clear();
+    }
+
     return (
         <>
             <header>
@@ -32,13 +42,22 @@ export default function Header({displayNavMethod, dislayLogin, loggedIn, userDet
                         {
                             loggedIn
                             ?
-                            <Link to={'/my_account/' + userDetails.fname + '_' + userDetails.lname} state={userDetails} className='icon'>
+                            <div className='icon dropdownContainer'>
+                                <FontAwesomeIcon icon={faUser}/>
+
+                                <div className='profileDropdownContent'>
+                                    <div className='dropdownPointer'></div>
+                                    <ul>
+                                        <li><Link to={'/my_account/' + userDetails.fname + '_' + userDetails.lname} state={userDetails}>Your account</Link></li>
+                                        <hr/>
+                                        <li onClick={logout}>Logout</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            :
+                            <Link to='/signin' className='icon'>
                                 <FontAwesomeIcon icon={faUser}/>
                             </Link>
-                            :
-                            <div className='icon'>
-                                <FontAwesomeIcon icon={faUser} onClick={() => dislayLogin(true)}/>
-                            </div>
                         }
 
                         <Link to='/checkout' className='icon'>

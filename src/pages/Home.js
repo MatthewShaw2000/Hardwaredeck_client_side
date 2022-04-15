@@ -23,11 +23,9 @@ export default function Home()
         document.body.classList.remove("stopScroll");
     }, []);
 
-
     return (
         <>
             <main>
-                
                 <h1 style={{display: "none"}}>Home page</h1>
                 <InfoCarousel/>
                 <Carousel/>

@@ -9,7 +9,7 @@ import '../css/style.css';
 import logo from '../images/logoA.png';
 
 
-export default function NavMenu({displayNav, dislayLogin, displayNavMethod, loggedIn, userDetails})
+export default function NavMenu({displayNav, displayNavMethod, loggedIn, userDetails})
 {
     return (
         <>
@@ -34,7 +34,7 @@ export default function NavMenu({displayNav, dislayLogin, displayNavMethod, logg
                                 ?
                                 <NavLink activeClassName="active" to={"/my_account/" + userDetails.fname + "_" + userDetails.lname} state={userDetails}>Your Account</NavLink>
                                 :
-                                <div className="navSignin" onClick={() => dislayLogin(true)}>Sign In</div>
+                                <NavLink activeClassName="active" to='/signin'>Sign in</NavLink>
                             }
                         </li>
                         <hr/>
