@@ -8,7 +8,7 @@ import '../css/style.css';
 
 
 
-export default function Footer({loggedIn, userDetails})
+export default function Footer({user})
 {
     return (
         <>
@@ -29,8 +29,8 @@ export default function Footer({loggedIn, userDetails})
                     <ul>
                         <li><b>Links</b></li>
                         <li><Link to="/">Home</Link></li>
-                        <li><Link to="/products">Products</Link></li>
-                        <li><Link to={loggedIn ? "/my_account/" + userDetails.fname + "_" + userDetails.lname : "/signin"} state={userDetails}>My Account</Link></li>
+                        <li><Link to="/shop">Products</Link></li>
+                        <li><Link to={user ? "/my_account/" + user.fname + "_" + user.lname : "/signin"} state={user}>My Account</Link></li>
                     </ul>
 
                     <ul>

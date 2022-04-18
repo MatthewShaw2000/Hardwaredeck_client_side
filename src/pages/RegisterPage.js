@@ -1,6 +1,6 @@
 //React Components
 import React, {useEffect} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 //CSS 
 import '../css/style.css';
@@ -12,11 +12,22 @@ import logo from '../images/logoA.png';
 export default function Register()
 {
     useEffect(() => {
-        document.title = "Hardwaredeck | Sign In";
+        document.title = "Hardwaredeck | Register";
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
         document.body.classList.add("stopScroll");
     }, []);
+
+
+
+    const navigate = useNavigate();
+
+    //function to got back to home page
+    function backToHome()
+    {
+        document.body.classList.remove("stopScroll");
+        navigate('/');
+    }
 
 
 
@@ -53,9 +64,9 @@ export default function Register()
     return (
         <>
             <main className='loginRegisterPage'>
-                <Link to={'/'}>
+                <div onClick={backToHome}>
                     <img src={logo} className='pageLogo' alt='Logo'/>
-                </Link>
+                </div>
 
                 <form onSubmit={(event) => (event.preventDefault)} method='post' className='innerLoginRegister'>
                     <h1>Register</h1>

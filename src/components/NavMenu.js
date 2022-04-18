@@ -9,7 +9,7 @@ import '../css/style.css';
 import logo from '../images/logoA.png';
 
 
-export default function NavMenu({displayNav, displayNavMethod, loggedIn, userDetails})
+export default function NavMenu({displayNav, displayNavMethod, user})
 {
     return (
         <>
@@ -24,21 +24,23 @@ export default function NavMenu({displayNav, displayNavMethod, loggedIn, userDet
                     <ul>
                         <li><NavLink activeClassName="active" to="/">Home</NavLink></li>
                         <hr/>
-                        <li><NavLink activeClassName="active" to="/products">Product list</NavLink></li>
+                        <li><NavLink activeClassName="active" to="/shop">Product list</NavLink></li>
                         <hr/>
                         <li><NavLink activeClassName="active" to="/view">Product</NavLink></li>
                         <hr/>
                         <li>
                             {
-                                loggedIn
+                                user
                                 ?
-                                <NavLink activeClassName="active" to={"/my_account/" + userDetails.fname + "_" + userDetails.lname} state={userDetails}>Your Account</NavLink>
+                                <NavLink activeClassName="active" to={"/my_account/" + user.fname + "_" + user.lname} state={user}>Your Account</NavLink>
                                 :
                                 <NavLink activeClassName="active" to='/signin'>Sign in</NavLink>
                             }
                         </li>
                         <hr/>
                         <li><NavLink activeClassName="active" to="/checkout">Checkout</NavLink></li>
+                        <hr/>
+                        <li><NavLink activeClassName="active" to="/blog">Blog</NavLink></li>
                     </ul>
                 </div>
 

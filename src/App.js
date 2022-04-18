@@ -11,6 +11,9 @@ import Products from './pages/ProductsListPage';
 import Product from './pages/ProductPage';
 import Profile from './pages/ProfilePage';
 import Checkout from './pages/CheckoutPage';
+import Blog from './pages/BlogPage';
+import BlogPostPage from './pages/BlogPostPage'
+import Cart from './pages/CartPage';
 import Error from './pages/ErrorPage';
 import Login from './pages/LoginPage';
 import Register from './pages/RegisterPage';
@@ -27,21 +30,18 @@ import BackToTop from './components/BackToTop';
 //Main hub for the website
 export default function App() 
 {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [user, setUser] = useState();
 
   const [showNav, setShowNav] = useState(false);
   const [displayBackToTopBTN, setBackToTopBTN] = useState(false);
 
   
   useEffect(() => {
-    const test = localStorage.getItem('logged_in');
-    if(test)
+    const getUser = localStorage.getItem('user');
+    if(getUser)
     {
-      setLoggedIn(test);
-    }
-    else
-    {
-      setLoggedIn(false);
+      const loggedInUser = JSON.parse(getUser);
+      setUser(loggedInUser);
     }
   }, []);
 
@@ -87,46 +87,37 @@ export default function App()
 
 
 
-  const user = {
-    fname: "Matthew",
-    lname: "Shaw",
-    email: "test@test.com",
-    password: "password",
-    type: "admin",
-    phone: 354456453
-  };
-
-
   return (
     <Router>
 
       <div className='grid_container'>
 
         <Header displayNavMethod={displayNav}
-                loggedIn={loggedIn}
-                setLoggedIn={setLoggedIn}
-                userDetails={user}/>
+                user={user}
+                setUser={setUser}/>
         
         <NavMenu displayNav={showNav} 
                  displayNavMethod={displayNav} 
-                 loggedIn={loggedIn} 
-                 userDetails={user}/>
+                 user={user}/>
 
         <Routes>
           <Route path="/" element={<Home/>} index exact/>
-          <Route path="/products" element={<Products/>} exact/>
-          <Route path="/view" element={<Product/>} exact/>
+          <Route path="/shop" element={<Products/>} exact/>
+          <Route path="/products/view/:productName" element={<Product/>} exact/>
           <Route path="/my_account/:userName" element={<Profile/>} exact/>
           <Route path="/checkout" element={<Checkout/>} exact/>
+          <Route path="/blog" element={<Blog/>} exact/>
+          <Route path="/blog/:blogPost" element={<BlogPostPage/>} exact/>
+          <Route path="/cart" element={<Cart/>} exact/>
           <Route path="*" element={<Error/>}/>
 
-          <Route path="/signin" element={<Login user={user} setLoggedIn={setLoggedIn}/>}/>
+          <Route path="/signin" element={<Login setUser={setUser}/>}/>
           <Route path="/register" element={<Register/>}/>
         </Routes>
         
         {displayBackToTopBTN && <BackToTop/>}
 
-        <Footer loggedIn={loggedIn} userDetails={user}/>
+        <Footer user={user}/>
 
       </div>
     </Router>

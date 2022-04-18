@@ -18,7 +18,6 @@ export default function ErrorPage()
         document.title = "Error 404";
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
-        document.body.classList.remove("stopScroll");
     }, []);
 
 

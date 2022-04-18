@@ -18,16 +18,16 @@ import {faCartShopping} from '@fortawesome/free-solid-svg-icons';
 
 
 
-export default function Header({displayNavMethod, loggedIn, setLoggedIn, userDetails})
+export default function Header({displayNavMethod, user, setUser})
 {
 
     const navigate = useNavigate();
     //Logout
     function logout()
     {
-        setLoggedIn(false);
+        setUser();
         navigate('/');
-        localStorage.clear();
+        localStorage.removeItem('user');
     }
 
     return (
@@ -40,7 +40,7 @@ export default function Header({displayNavMethod, loggedIn, setLoggedIn, userDet
 
                     <div className='icons'>
                         {
-                            loggedIn
+                            user
                             ?
                             <div className='icon dropdownContainer'>
                                 <FontAwesomeIcon icon={faUser}/>
@@ -48,7 +48,7 @@ export default function Header({displayNavMethod, loggedIn, setLoggedIn, userDet
                                 <div className='profileDropdownContent'>
                                     <div className='dropdownPointer'></div>
                                     <ul>
-                                        <li><Link to={'/my_account/' + userDetails.fname + '_' + userDetails.lname} state={userDetails}>Your account</Link></li>
+                                        <li><Link to={'/my_account/' + user.fname + '_' + user.lname} state={user}>Your account</Link></li>
                                         <hr/>
                                         <li onClick={logout}>Logout</li>
                                     </ul>
@@ -60,9 +60,10 @@ export default function Header({displayNavMethod, loggedIn, setLoggedIn, userDet
                             </Link>
                         }
 
-                        <Link to='/checkout' className='icon'>
+                        <Link to={user ? '/cart' : '/signin'} className='icon'>
                             <FontAwesomeIcon icon={faCartShopping}/>
                         </Link>
+
                         <MenuBtn displayNavMethod={displayNavMethod}/>
                     </div>
                 </div>

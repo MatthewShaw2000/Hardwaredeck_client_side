@@ -14,7 +14,7 @@ import AddProduct from '../components/AddProduct';
 import EditProduct from '../components/EditProduct';
 
 
-export default function Profile(props) 
+export default function Profile() 
 {
     //retrieve the name from the url
     const {userName} = useParams();

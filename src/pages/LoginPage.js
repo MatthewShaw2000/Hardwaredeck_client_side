@@ -9,7 +9,7 @@ import '../css/style.css';
 import logo from '../images/logoA.png';
 
 
-export default function Login({user, setLoggedIn})
+export default function Login({setUser})
 {
     useEffect(() => {
         document.title = "Hardwaredeck | Sign In";
@@ -35,6 +35,25 @@ export default function Login({user, setLoggedIn})
 
 
     const navigate = useNavigate();
+
+    //function to got back to home page
+    function backToHome()
+    {
+        document.body.classList.remove("stopScroll");
+        navigate('/');
+    }
+
+
+    const tempUser = {
+        fname: "Matthew",
+        lname: "Shaw",
+        email: "test@test.com",
+        password: "password",
+        type: "admin",
+        phone: 354456453
+      };
+
+
     //test for logging in (placeholder)
     const login = async event =>
     {
@@ -42,18 +61,29 @@ export default function Login({user, setLoggedIn})
         const email = event.target.email.value;
         const password = event.target.password.value;
 
-        if(email !== user.email || password !== user.password)
+        if(email !== tempUser.email || password !== tempUser.password)
         {
             alert('try again');
-            setLoggedIn(false);
         }
         else
         {
+            const user = {
+                fname: tempUser.fname,
+                lname: tempUser.lname,
+                email: tempUser.email,
+                type: tempUser.type,
+                phone: tempUser.phone
+            }
+
+
             //store user in local storage
-            localStorage.setItem('logged_in', true);
-            setLoggedIn(true);
+            localStorage.setItem('user', JSON.stringify(user));
+
+            //set state of the user
+            setUser(user);
             document.body.classList.remove("stopScroll");
             navigate('/');
+            alert("Welcome " + user.fname + " " + user.lname);
         }
     };
 
@@ -62,9 +92,9 @@ export default function Login({user, setLoggedIn})
     return (
         <>
             <main className='loginRegisterPage'>
-                <Link to={'/'}>
+                <div onClick={backToHome}>
                     <img src={logo} className='pageLogo' alt='Logo'/>
-                </Link>
+                </div>
 
                 <form onSubmit={login} className='innerLoginRegister'>
                     <h1>Sign In</h1>

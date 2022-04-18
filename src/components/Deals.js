@@ -17,7 +17,7 @@ export default function Deals()
 {
     return (
         <>
-            <section className='dealsSection'>
+            <section className='productsSection'>
                 <h2 className='dealsHeader'>Tech Deals</h2>
                 <Card>
                     <Card.Img variant="top" src="holder.js/100px180" />
@@ -28,7 +28,8 @@ export default function Deals()
                             Some quick example text to build on the card 
                             title and make up the bulk of
                             the card's content.
-                            <br/>
+                        </Card.Text>
+                        <Card.Text>
                             Price: £10
                         </Card.Text>
                     </Card.Body>
