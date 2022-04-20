@@ -36,14 +36,18 @@ export default function App()
   const [displayBackToTopBTN, setBackToTopBTN] = useState(false);
 
   
+  //If user has logged in set user useState
   useEffect(() => {
-    const getUser = localStorage.getItem('user');
+    const getUser = sessionStorage.getItem('user');
     if(getUser)
     {
       const loggedInUser = JSON.parse(getUser);
       setUser(loggedInUser);
     }
   }, []);
+
+
+
 
 
   //Display Navigation sidebar function

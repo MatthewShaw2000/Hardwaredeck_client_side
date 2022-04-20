@@ -77,7 +77,7 @@ export default function Login({setUser})
 
 
             //store user in local storage
-            localStorage.setItem('user', JSON.stringify(user));
+            sessionStorage.setItem('user', JSON.stringify(user));
 
             //set state of the user
             setUser(user);

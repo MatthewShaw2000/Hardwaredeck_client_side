@@ -13,7 +13,7 @@ import {faXmark} from '@fortawesome/free-solid-svg-icons';
 
 
 
-export default function CartItem()
+export default function CartItem({item, removeItem})
 {
     return (
         <>
@@ -23,15 +23,17 @@ export default function CartItem()
                 </div>
 
                 <div className='cartName'>
-                    <strong>Item Name</strong>
+                    <strong>{item.name}</strong>
                 </div>
 
-                <div className='cartPrice'><i>£6.45</i></div>
+                <div className='cartPrice'><i>£{item.price}</i></div>
 
-                <div className='cartQuantity'>x2</div>
+                <div className='cartQuantity'>Qty: 
+                    <input id='quantity' defaultValue={item.quantity}/>
+                </div>
 
                 <div className='cartRemove'>
-                    <FontAwesomeIcon icon={faXmark} />
+                    <FontAwesomeIcon icon={faXmark} onClick={() => removeItem(item.id)}/>
                 </div>
             </div>
         </>

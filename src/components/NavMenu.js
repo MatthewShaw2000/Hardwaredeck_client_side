@@ -24,9 +24,7 @@ export default function NavMenu({displayNav, displayNavMethod, user})
                     <ul>
                         <li><NavLink activeClassName="active" to="/">Home</NavLink></li>
                         <hr/>
-                        <li><NavLink activeClassName="active" to="/shop">Product list</NavLink></li>
-                        <hr/>
-                        <li><NavLink activeClassName="active" to="/view">Product</NavLink></li>
+                        <li><NavLink activeClassName="active" to="/shop">Shop</NavLink></li>
                         <hr/>
                         <li>
                             {
@@ -37,8 +35,6 @@ export default function NavMenu({displayNav, displayNavMethod, user})
                                 <NavLink activeClassName="active" to='/signin'>Sign in</NavLink>
                             }
                         </li>
-                        <hr/>
-                        <li><NavLink activeClassName="active" to="/checkout">Checkout</NavLink></li>
                         <hr/>
                         <li><NavLink activeClassName="active" to="/blog">Blog</NavLink></li>
                     </ul>

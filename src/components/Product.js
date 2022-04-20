@@ -13,7 +13,7 @@ import '../css/style.css';
 
 
 
-export default function Product({product})
+export default function Product({product, addProductsToCart, user})
 {
     return (
         <>
@@ -26,7 +26,13 @@ export default function Product({product})
                     <Card.Text>
                         Price: £{product.price}
                     </Card.Text>
-                    <div className='addToCart' onClick={() => alert(product.name + " has been added to the cart")}>Add to cart</div>
+                    {
+                        user
+                        ?
+                        <div className='addToCart' onClick={() => addProductsToCart(product.id)}>Add to cart</div>
+                        :
+                        <Link to='/signin' className='addToCart'>Add to cart</Link>
+                    }
                 </Card.Body>
             </Card>
         </>

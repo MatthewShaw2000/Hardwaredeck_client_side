@@ -1,5 +1,5 @@
 //React Components
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 //CSS 
 import '../css/style.css';
@@ -11,12 +11,27 @@ import CartItem from '../components/CartItem';
 
 export default function ErrorPage()
 {
+    const [cartItems, setCartItems] = useState([]);
 
     useEffect(() => {
         document.title = "Hardwaredeck | Your cart";
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
+
+        const storedItems = localStorage.getItem('cart');
+        if(storedItems)
+        {
+            setCartItems(JSON.parse(storedItems));
+        }
     }, []);
+
+
+
+    function removeItem(itemID)
+    {
+        const items = cartItems.filter(item => item.id !== itemID)
+        setCartItems(items);
+    }
 
 
     return (
@@ -26,8 +41,15 @@ export default function ErrorPage()
                 <section className='cartSection'>
                     <h2>Your items</h2>
 
-                    <CartItem/>
-                    <CartItem/>
+                    {
+                        cartItems.length < 1
+                        ?
+                        <p><strong>No products found in cart</strong></p>
+                        :
+                        cartItems.map(item => {
+                            return <CartItem item={item} removeItem={removeItem} key={item.id}/>
+                        })
+                    }
 
                 </section>
             </main>

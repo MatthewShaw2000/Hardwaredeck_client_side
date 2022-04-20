@@ -27,7 +27,8 @@ export default function Header({displayNavMethod, user, setUser})
     {
         setUser();
         navigate('/');
-        localStorage.removeItem('user');
+        sessionStorage.removeItem('user');
+        localStorage.removeItem('cart');
     }
 
     return (

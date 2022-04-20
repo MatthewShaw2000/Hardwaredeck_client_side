@@ -545,12 +545,18 @@ footer ul li a:hover
 .card
 {
     width: 350px;
-    height: 300px;
+    height: 400px;
     margin: auto;
     margin-bottom: 15px !important;
     padding: 5px;
     background-color: var(--textBackground);
     box-shadow: 2px 2px 5px 1px var(--boxShadow);
+}
+.card img
+{
+    width: 100%;
+    height: 200px;
+    object-fit: scale-down;
 }
 .card .addToCart
 {
@@ -558,6 +564,7 @@ footer ul li a:hover
     height: 40px;
     color: black;
     display: block;
+    text-decoration: none;
     padding: 5px;
     text-align: center;
     border-radius: var(--borderRadius);
@@ -860,11 +867,21 @@ video
     grid-template-areas: 
         'img item itemRemove'
         'img price quantity';
-    grid-template-columns: 30% 55% 15%;
-    grid-template-rows: 75% 25%;
+    grid-template-columns: 25% 50% 25%;
+    grid-template-rows: 70% 30%;
 
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     border-top: solid var(--borderThickness) var(--navyBlue);
+}
+.cartQuantity input
+{
+    width: 40px;
+}
+.cartRemove svg
+{
+    float: right;
+    width: 25px;
+    height: 25px;
 }
 
 
