@@ -1,5 +1,6 @@
 //React Components
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 //CSS 
 import '../css/style.css';
@@ -27,9 +28,24 @@ export default function ErrorPage()
 
 
 
+    //Upon change to the item quantity
+    function changeQuantity(itemID, newQuantity)
+    {
+        const newItem = cartItems.find(item => item.id === itemID);
+        if(newItem)
+        {
+            newItem.quantity = newQuantity;
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+        }
+    }
+
+
+
+    //Remove product from cart
     function removeItem(itemID)
     {
-        const items = cartItems.filter(item => item.id !== itemID)
+        const items = cartItems.filter(item => item.id !== itemID);
+        localStorage.setItem('cart', JSON.stringify(items));
         setCartItems(items);
     }
 
@@ -38,8 +54,8 @@ export default function ErrorPage()
         <>
             <main>
                 <h1>Cart</h1>
-                <section className='cartSection'>
-                    <h2>Your items</h2>
+                <section className='cartCheckoutSection'>
+                    <h2>Your Items</h2>
 
                     {
                         cartItems.length < 1
@@ -47,8 +63,13 @@ export default function ErrorPage()
                         <p><strong>No products found in cart</strong></p>
                         :
                         cartItems.map(item => {
-                            return <CartItem item={item} removeItem={removeItem} key={item.id}/>
+                            return <CartItem item={item} changeQuantity={changeQuantity} removeItem={removeItem} key={item.id}/>
                         })
+                    }
+                    {
+                        cartItems.length > 0
+                        &&
+                        <Link className='button' to='/checkout' state={cartItems}>Checkout</Link>
                     }
 
                 </section>

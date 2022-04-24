@@ -32,7 +32,7 @@ export default function ProductList()
         if(getCart)
         {
             const storedCart = JSON.parse(getCart);
-            setCartItems(storedCart)
+            setCartItems(storedCart);
         }
     }, []);
 
@@ -72,7 +72,7 @@ export default function ProductList()
         if(item)
         {
             item.quantity = item.quantity + 1;
-            localStorage.setItem('cart', JSON.stringify(cartItems))
+            localStorage.setItem('cart', JSON.stringify(cartItems));
         }
         else
         {

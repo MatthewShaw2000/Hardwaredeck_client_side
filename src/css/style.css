@@ -558,7 +558,7 @@ footer ul li a:hover
     height: 200px;
     object-fit: scale-down;
 }
-.card .addToCart
+.button
 {
     width: 100%;
     height: 40px;
@@ -818,8 +818,10 @@ video
 
 
 
-/*------ Cart Page ------*/
-.cartSection
+
+
+/*------ Cart and checkout Page ------*/
+.cartCheckoutSection
 {
     width: var(--elementWidth);
     height: auto;
@@ -859,7 +861,7 @@ video
     grid-area: itemRemove;
     padding-left: 5px;
 }
-.cartSection .cartItem
+.cartCheckoutSection .cartItem
 {
     width: 100%;
     height: 100px;
@@ -882,6 +884,17 @@ video
     float: right;
     width: 25px;
     height: 25px;
+}
+.cartCheckoutSection input
+{
+    width: 100%;
+    margin-bottom: 10px;
+    border-radius: var(--borderRadius);
+}
+.cartCheckoutSection .checkoutTotal
+{
+    font-weight: 900;
+    font-size: large;
 }
 
 

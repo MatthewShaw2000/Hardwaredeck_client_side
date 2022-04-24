@@ -29,9 +29,9 @@ export default function Product({product, addProductsToCart, user})
                     {
                         user
                         ?
-                        <div className='addToCart' onClick={() => addProductsToCart(product.id)}>Add to cart</div>
+                        <div className='button' onClick={() => addProductsToCart(product.id)}>Add to cart</div>
                         :
-                        <Link to='/signin' className='addToCart'>Add to cart</Link>
+                        <Link to='/signin' className='button'>Add to cart</Link>
                     }
                 </Card.Body>
             </Card>

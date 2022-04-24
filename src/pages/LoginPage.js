@@ -50,7 +50,9 @@ export default function Login({setUser})
         email: "test@test.com",
         password: "password",
         type: "admin",
-        phone: 354456453
+        phone: 354456453,
+        address: 'none of your business',
+        postCode: 'postcode'
       };
 
 
@@ -72,18 +74,22 @@ export default function Login({setUser})
                 lname: tempUser.lname,
                 email: tempUser.email,
                 type: tempUser.type,
-                phone: tempUser.phone
+                phone: tempUser.phone,
+                address: tempUser.address,
+                postCode: tempUser.postCode
             }
+
+
 
 
             //store user in local storage
             sessionStorage.setItem('user', JSON.stringify(user));
 
             //set state of the user
-            setUser(user);
+            setUser(tempUser);
             document.body.classList.remove("stopScroll");
             navigate('/');
-            alert("Welcome " + user.fname + " " + user.lname);
+            alert("Welcome " + tempUser.fname + " " + tempUser.lname);
         }
     };
 

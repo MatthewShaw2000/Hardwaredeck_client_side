@@ -7,13 +7,9 @@ import '../css/style.css';
 //Images
 import img from '../images/motherboard.jpg';
 
-//font Awesome
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faXmark} from '@fortawesome/free-solid-svg-icons';
 
 
-
-export default function CartItem({item, changeQuantity, removeItem, })
+export default function CheckoutItem({item})
 {
     return (
         <>
@@ -28,15 +24,10 @@ export default function CartItem({item, changeQuantity, removeItem, })
 
                 <div className='cartPrice'><i>£{item.price}</i></div>
 
-                <div className='cartQuantity'>Qty: 
-                    <input id='quantity' onChange={(event) => changeQuantity(item.id, event.target.value)} defaultValue={item.quantity}/>
-                </div>
-
-                <div className='cartRemove'>
-                    <FontAwesomeIcon icon={faXmark} onClick={() => removeItem(item.id)}/>
+                <div className='cartQuantity'>
+                    Qty: {item.quantity}
                 </div>
             </div>
         </>
     );
-
 }
