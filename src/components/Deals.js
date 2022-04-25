@@ -38,7 +38,7 @@ export default function Deals()
                 <Card>
                     <Card.Img variant="top" src="holder.js/100px180" />
                     <Card.Body>
-                        <Card.Title><h3>Card Title</h3></Card.Title>
+                        <Card.Title>Card Title</Card.Title>
                         <Card.Text>
                             Description:
                             Some quick example text to build on the card 

@@ -45,14 +45,14 @@ export default function Login({setUser})
 
 
     const tempUser = {
-        fname: "Matthew",
-        lname: "Shaw",
+        fname: "Strongest",
+        lname: "Avenger",
         email: "test@test.com",
         password: "password",
         type: "admin",
         phone: 354456453,
-        address: 'none of your business',
-        postCode: 'postcode'
+        address: 'Classified',
+        postCode: 'Unknown'
       };
 
 

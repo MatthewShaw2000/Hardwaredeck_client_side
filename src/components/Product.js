@@ -15,14 +15,42 @@ import '../css/style.css';
 
 export default function Product({product, addProductsToCart, user})
 {
+    let pName = nameSplit(product.name);
+
+    /*
+        Function to split the products name then put back
+        together with no breaks to be put in the URL
+        */
+    function nameSplit(name)
+    {
+        const splitName = name.split(' ');
+        let urlName = splitName[0];
+        
+        if(splitName.length > 1)
+        {
+            for(let i=1; i<splitName.length; i++)
+            {
+                urlName += '_';
+                urlName += splitName[i];
+            }
+        }
+        return urlName;
+    }
+
+
+
     return (
         <>
             <Card>
-                <Link to='/products/view'>
+                <Link to={'/products/view/' + pName}>
                     <Card.Img variant="top" src="holder.js/100px180" />
                 </Link>
                 <Card.Body>
-                    <Card.Title><h3>{product.name}</h3></Card.Title>
+                    <Card.Title>
+                        <Link to={'/products/view/' + pName}>
+                            {product.name}
+                        </Link>
+                    </Card.Title>
                     <Card.Text>
                         Price: £{product.price}
                     </Card.Text>

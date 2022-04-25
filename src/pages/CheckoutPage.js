@@ -7,13 +7,13 @@ import '../css/style.css';
 
 //Page Components
 import CheckoutItem from '../components/CheckoutItem';
+import Loader from '../components/Loader';
 
 
 export default function Checkout() 
 {
-    //retrive passed state data
-    const location = useLocation();
-    const [cartItems] = useState(location.state);
+    
+    const [cartItems, setCartItems] = useState();
 
 
     let subtotal = 0.00;
@@ -24,13 +24,21 @@ export default function Checkout()
     });
 
 
-
-
     useEffect(() => {
         document.title = "Hardwaredeck | Checkout";
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
+        document.body.classList.remove("stopScroll");
+
+        
     }, [])
+
+
+    //retrive passed state data
+    const location = useLocation();
+    useEffect(() => {
+        setCartItems(location.state);
+    }, [location])
 
 
     return (
@@ -40,10 +48,14 @@ export default function Checkout()
                 <section className='cartCheckoutSection'>
                     <h2>Your Items</h2>
                     {
+                        cartItems
+                        ?
                         cartItems.map(item => {
                             subtotal += item.price * item.quantity;
                             return <CheckoutItem item={item} key={item.id}/>
                         })
+                        :
+                        <Loader/>
                     }
                     <p>Subtotal: <i>£{subtotal}</i></p>
                 </section>

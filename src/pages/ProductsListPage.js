@@ -6,18 +6,45 @@ import '../css/style.css';
 
 //Page Components
 import Product from '../components/Product';
+import Loader from '../components/Loader';
 
 
 
 export default function ProductList() 
 {
     const [user, setUser] = useState();
+    const [products, setProducts] = useState();
     const [cartItems, setCartItems] = useState([]);
+
+
 
     useEffect(() => {
         document.title = "Hardwaredeck | Shop";
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
+        document.body.classList.remove("stopScroll");
+
+        //temp product
+        const tempProducts = [
+            {
+                id: 1,
+                name: 'Motherboard',
+                price: 50.00
+            },
+            {
+                id: 2,
+                name: 'graphics card',
+                price: 25.00
+            },
+            {
+                id: 3,
+                name: 'Intel 5 CPU',
+                price: 100.00
+            }
+        ]
+
+
+        setProducts(tempProducts);
 
 
         //check if user has logged in
@@ -39,29 +66,8 @@ export default function ProductList()
 
 
     useEffect(() => {
-        localStorage.setItem('cart', JSON.stringify(cartItems))
+        localStorage.setItem('cart', JSON.stringify(cartItems));
     }, [cartItems]);
-
-
-
-    //temp product
-    const products = [
-        {
-            id: 1,
-            name: 'Motherboard',
-            price: 50.00
-        },
-        {
-            id: 2,
-            name: 'graphics card',
-            price: 25.00
-        },
-        {
-            id: 3,
-            name: 'Intel 5 CPU',
-            price: 100.00
-        }
-    ]
 
 
 
@@ -93,9 +99,13 @@ export default function ProductList()
                 <section className='productsSection'>
                     <h2>(Product category)</h2>
                     {
+                        products
+                        ?
                         products.map(product => {
                             return <Product product={product} addProductsToCart={addProductsToCart} user={user} key={product.id}/>
                         })
+                        :
+                        <Loader/>
                     }
                 </section>
             </main>

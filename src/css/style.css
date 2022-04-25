@@ -456,6 +456,24 @@ footer ul li a:hover
 }
 
 
+/*--- Loader ---*/
+.loader
+{
+    border: solid 15px var(--headerFooterNav);
+    border-top: solid 15px var(--navyBlue);
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    animation: spin 2s linear infinite;
+    margin: auto;
+    margin-bottom: 20px;
+}
+@keyframes spin {
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(360deg);}
+}
+
+
 
 
 
@@ -551,6 +569,11 @@ footer ul li a:hover
     padding: 5px;
     background-color: var(--textBackground);
     box-shadow: 2px 2px 5px 1px var(--boxShadow);
+}
+.card a
+{
+    text-decoration: none;
+    color: black;
 }
 .card img
 {

@@ -20,6 +20,7 @@ export default function Home()
         document.title = "Hardwaredeck | CPU's, Motherboards, and more";
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
+        document.body.classList.remove("stopScroll");
     }, []);
 
     return (

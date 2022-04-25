@@ -12,15 +12,12 @@ import DeliveryAddress from '../components/DeliveryAddress';
 import UpdateProfile from '../components/UpdateProfile'
 import AddProduct from '../components/AddProduct';
 import EditProduct from '../components/EditProduct';
+import Loader from '../components/Loader';
 
 
 export default function Profile() 
 {
-    const location = useLocation();
-    const [user] = useState(() => {
-        //retrive passed state data
-        return location.state;
-    });
+    const [user, setUser] = useState();
 
 
     //retrieve the name from the url
@@ -41,6 +38,13 @@ export default function Profile()
         document.body.classList.remove("stopScroll");
     }, []);
 
+    //retrieve passed state data
+    const location = useLocation();
+    useEffect(() => {
+        setUser(location.state);
+    }, [location])
+
+
     useEffect(() => {
         document.title = "Your Account | " + name[0] + " " + name[1];
     }, [name]);
@@ -51,12 +55,20 @@ export default function Profile()
         <>
             <main className='accountPage'>
                 <h1>My Account</h1>
-                <ProfileInfo name={name} userDetails={user}/>
-                <DeliveryAddress/>
-                <UpdateProfile/>
-                <Orders/>
-                <AddProduct/>
-                <EditProduct/>
+                {
+                    user
+                    ?
+                    <>
+                    <ProfileInfo name={name} userDetails={user}/>
+                    <DeliveryAddress/>
+                    <UpdateProfile/>
+                    <Orders/>
+                    <AddProduct/>
+                    <EditProduct/>
+                    </>
+                    :
+                    <Loader/>
+                }
             </main>
         </>
     );

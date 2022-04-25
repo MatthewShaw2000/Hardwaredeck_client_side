@@ -17,6 +17,7 @@ export default function BlogPost()
         document.title = "Hardwaredeck | Blog Post";
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
+        document.body.classList.remove("stopScroll");
     }, []);
 
     return (

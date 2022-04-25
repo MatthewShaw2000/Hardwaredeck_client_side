@@ -7,17 +7,19 @@ import '../css/style.css';
 
 //Page Components
 import CartItem from '../components/CartItem';
+import Loader from '../components/Loader';
 
 
 
 export default function ErrorPage()
 {
-    const [cartItems, setCartItems] = useState([]);
+    const [cartItems, setCartItems] = useState();
 
     useEffect(() => {
         document.title = "Hardwaredeck | Your cart";
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
+        document.body.classList.remove("stopScroll");
 
         const storedItems = localStorage.getItem('cart');
         if(storedItems)
@@ -58,15 +60,21 @@ export default function ErrorPage()
                     <h2>Your Items</h2>
 
                     {
-                        cartItems.length < 1
+                        cartItems
                         ?
-                        <p><strong>No products found in cart</strong></p>
+                            cartItems.length < 1
+                            ?
+                            <p><strong>No products found in cart</strong></p>
+                            :
+                            cartItems.map(item => {
+                                return <CartItem item={item} changeQuantity={changeQuantity} removeItem={removeItem} key={item.id}/>
+                            })
                         :
-                        cartItems.map(item => {
-                            return <CartItem item={item} changeQuantity={changeQuantity} removeItem={removeItem} key={item.id}/>
-                        })
+                        <Loader/>
                     }
                     {
+                        cartItems
+                        &&
                         cartItems.length > 0
                         &&
                         <Link className='button' to='/checkout' state={cartItems}>Checkout</Link>
