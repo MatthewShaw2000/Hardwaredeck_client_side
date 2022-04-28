@@ -1,5 +1,6 @@
 //React Components
 import React, {useState, useEffect} from 'react';
+import { useParams } from 'react-router-dom';
 
 //CSS 
 import '../css/style.css';
@@ -15,7 +16,15 @@ export default function ProductList()
     const [user, setUser] = useState();
     const [products, setProducts] = useState();
     const [cartItems, setCartItems] = useState([]);
+    const [category, setCategory] = useState();
 
+    
+    //retrieve the category from the url
+    const {catName} = useParams();
+
+    useEffect(() => {
+        setCategory(catName);
+    }, [catName])
 
 
     useEffect(() => {
@@ -23,6 +32,7 @@ export default function ProductList()
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
         document.body.classList.remove("stopScroll");
+
 
         //temp product
         const tempProducts = [
@@ -45,6 +55,8 @@ export default function ProductList()
 
 
         setProducts(tempProducts);
+
+
 
 
         //check if user has logged in
@@ -97,7 +109,7 @@ export default function ProductList()
             <main>
                 <h1 style={{display: "none"}}>Shop</h1>
                 <section className='productsSection'>
-                    <h2>(Product category)</h2>
+                    <h2>{category}</h2>
                     {
                         products
                         ?

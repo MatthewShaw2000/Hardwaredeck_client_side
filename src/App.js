@@ -2,8 +2,8 @@
 import './App.css';
 
 //React Components
-import React, {useState, useEffect} from 'react';
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 //Pages
 import Home from './pages/Home';
@@ -33,6 +33,7 @@ export default function App()
   const [user, setUser] = useState();
 
   const [showNav, setShowNav] = useState(false);
+  const [catDropdown, setCatDropdown] = useState(false);
   const [displayBackToTopBTN, setBackToTopBTN] = useState(false);
 
   
@@ -57,7 +58,7 @@ export default function App()
       const lines = menu_btn.querySelectorAll("div.line");
 
       setShowNav(!showNav);
-
+      
       lines.forEach(line => {
           if(!showNav)
           {
@@ -69,7 +70,36 @@ export default function App()
               line.classList.remove("cross");
               document.body.classList.remove("stopScroll");
           }
+
+          categoryDropdown();
+
+
       });
+  }
+
+
+
+  //display shop dropdown
+  function categoryDropdown()
+  {
+      const shopButton = document.getElementsByClassName('shopButton')[0];
+      const categoryDropdown = document.getElementsByClassName('categoryDropdown')[0];
+      const shopBtnArrow = document.getElementById('shopBtnArrow');
+
+      setCatDropdown(!catDropdown);
+
+      if(!catDropdown)
+      {
+          shopButton.classList.add('active');
+          categoryDropdown.classList.add('activeDropdown');
+          shopBtnArrow.classList.add('activeDropdownArrow');
+      }
+      else
+      {
+          shopButton.classList.remove('active');
+          categoryDropdown.classList.remove('activeDropdown');
+          shopBtnArrow.classList.remove('activeDropdownArrow');
+      }
   }
 
 
@@ -102,11 +132,14 @@ export default function App()
         
         <NavMenu displayNav={showNav} 
                  displayNavMethod={displayNav} 
-                 user={user}/>
+                 user={user}
+                 setUser={setUser}
+                 categoryDropdown={categoryDropdown}/>
 
         <Routes>
           <Route path="/" element={<Home/>} index exact/>
           <Route path="/shop" element={<Products/>} exact/>
+          <Route path="/shop/cat/:catName" element={<Products/>} exact/>
           <Route path="/products/view/:productName" element={<Product/>} exact/>
           <Route path="/my_account/:userName" element={<Profile/>} exact/>
           <Route path="/checkout" element={<Checkout/>} exact/>

@@ -1,5 +1,5 @@
 //React Components
-import React, {useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 //CSS 
@@ -11,6 +11,10 @@ import logo from '../images/logoA.png';
 
 export default function Login({setUser})
 {
+    const [email, setEmail] = useState();
+    const [password, setPassword] = useState();
+
+
     useEffect(() => {
         document.title = "Hardwaredeck | Sign In";
         document.body.scrollTop = 0;
@@ -60,8 +64,6 @@ export default function Login({setUser})
     const login = async event =>
     {
         event.preventDefault();
-        const email = event.target.email.value;
-        const password = event.target.password.value;
 
         if(email !== tempUser.email || password !== tempUser.password)
         {
@@ -106,10 +108,10 @@ export default function Login({setUser})
                     <h1>Sign In</h1>
 
                     <label>Email</label>
-                    <input type='email' id='email' name='email' required/>
+                    <input type='email' onChange={(event) => setEmail(event.target.value)} name='email' required/>
                 
                     <label>Password <span>Forgot Password</span></label>
-                    <input type='password' id='password' name='password' required/>
+                    <input type='password' onChange={(event) => setPassword(event.target.value)} name='password' required/>
 
                     <div className='passShow'>
                         <input type='checkbox' onClick={showPassword} name='passwordShow'/>

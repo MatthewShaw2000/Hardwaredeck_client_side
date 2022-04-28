@@ -218,7 +218,7 @@ header .headerInner .menu_btn
 {
     background-image: url('../svg/footer.svg');
     position: absolute;
-    top: -15px;
+    top: -9px;
     object-fit: fill;
 }
 .navBorder
@@ -300,9 +300,13 @@ nav
     background-color: var(--headerFooterNav);
     width: var(--sidebarWidth);
     height: 100%;
-    padding: 20px;
-    /*border-right: solid var(--borderThickness) var(--navyBlue);*/
     transition: all 0.5s ease;
+}
+.innerNav
+{
+    z-index: 1;
+    background-color: var(--headerFooterNav);
+    padding: 10px;
 }
 .pageLogo
 {
@@ -314,7 +318,7 @@ nav
 }
 nav ul
 {
-    padding: 10px;
+    padding: 0;
 }
 nav ul li
 {
@@ -322,7 +326,7 @@ nav ul li
     margin: 10px 0;
     text-align: center;
 }
-nav ul li a, .navSignin
+nav ul li a, .navButton
 {
     text-decoration: none;
     font-size: 16px;
@@ -331,13 +335,18 @@ nav ul li a, .navSignin
     color: black;
     background-color: var(--backgroundColour);
     border-radius: var(--borderRadius);
-    transition: all 0.5s ease;
+    transition: 0.5s ease;
     box-shadow: 2px 2px 5px 1px var(--boxShadow);
 }
-nav ul li a:hover, .navSignin:hover
+.shopButton svg
+{
+    margin-left: 10px;
+    transition: 0.5s ease;
+}
+nav ul li a:hover, .navButton:hover
 {
     background-color: var(--navyBlue);
-    color: var(--headerFooterNav);
+    color: var(--textBackground);
     cursor: pointer;
 }
 nav hr
@@ -348,6 +357,42 @@ nav hr
 {
     left: 0;
 }
+/*shop dropdown list*/
+.categoryDropdown
+{
+    z-index: -10;
+    position: absolute;
+    top: 215px;
+    left: -100%;
+    background-color: var(--backgroundColour);
+    border-radius: var(--borderRadius);
+    transition: 0.5s ease;
+    box-shadow: 2px 2px 5px 1px var(--boxShadow);
+}
+.activeDropdown
+{
+    left: 200px;
+}
+.activeDropdownArrow
+{
+    transform: rotate(-90deg);
+    transition: 0.5s ease;
+}
+.categoryDropdown ul
+{
+    padding: 0;
+    width: 180px;
+    margin: auto;
+}
+.categoryDropdown ul li
+{
+    margin: 0;
+}
+.categoryDropdown ul li a
+{
+    box-shadow: 0 0 0 0;
+    border-top: solid var(--borderThickness) var(--navyBlue);
+}
 
 
 /*Navlinks*/
@@ -356,12 +401,16 @@ nav hr
     font-weight: bold;
     text-decoration: underline;
     background-color: var(--navyBlue);
-    color: var(--backgroundColour);
+    color: var(--textBackground);
 }
 .active:hover
 {
-    color: var(--headerFooterNav);
+    color: var(--textBackground);
 }
+
+
+
+
 
 
 
@@ -594,6 +643,10 @@ footer ul li a:hover
     background-color: var(--banners);
     border: solid 1px var(--navyBlue);
     box-shadow: 1px 2px 5px 1px var(--boxShadow);
+}
+.button:hover
+{
+    cursor: pointer;
 }
 
 
@@ -907,6 +960,10 @@ video
     float: right;
     width: 25px;
     height: 25px;
+}
+.cartRemove svg:hover
+{
+    cursor: pointer;
 }
 .cartCheckoutSection input
 {

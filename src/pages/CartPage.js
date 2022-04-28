@@ -7,7 +7,6 @@ import '../css/style.css';
 
 //Page Components
 import CartItem from '../components/CartItem';
-import Loader from '../components/Loader';
 
 
 
@@ -59,18 +58,14 @@ export default function ErrorPage()
                 <section className='cartCheckoutSection'>
                     <h2>Your Items</h2>
 
-                    {
-                        cartItems
+                    {   
+                        cartItems && cartItems.length > 0
                         ?
-                            cartItems.length < 1
-                            ?
-                            <p><strong>No products found in cart</strong></p>
-                            :
-                            cartItems.map(item => {
-                                return <CartItem item={item} changeQuantity={changeQuantity} removeItem={removeItem} key={item.id}/>
-                            })
+                        cartItems.map(item => {
+                            return <CartItem item={item} changeQuantity={changeQuantity} removeItem={removeItem} key={item.id}/>
+                        })
                         :
-                        <Loader/>
+                        <p><strong>No products found in cart</strong></p>
                     }
                     {
                         cartItems
