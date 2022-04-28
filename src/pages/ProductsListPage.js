@@ -14,7 +14,7 @@ import Loader from '../components/Loader';
 export default function ProductList() 
 {
     const [user, setUser] = useState();
-    const [products, setProducts] = useState();
+    const [products, setProducts] = useState([]);
     const [cartItems, setCartItems] = useState([]);
     const [category, setCategory] = useState();
 
@@ -39,17 +39,20 @@ export default function ProductList()
             {
                 id: 1,
                 name: 'Motherboard',
-                price: 50.00
+                price: 50.01,
+                cat: 'Motherboards'
             },
             {
                 id: 2,
                 name: 'graphics card',
-                price: 25.00
+                price: 25.99,
+                cat: 'graphics cards'
             },
             {
                 id: 3,
                 name: 'Intel 5 CPU',
-                price: 100.00
+                price: 100.00,
+                cat: 'CPU'
             }
         ]
 
@@ -76,7 +79,7 @@ export default function ProductList()
     }, []);
 
 
-
+    //When products get updated store it in localstorage
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cartItems));
     }, [cartItems]);
@@ -104,16 +107,42 @@ export default function ProductList()
 
 
 
+
+    function filterProducts()
+    {
+        if(category === undefined)
+        {
+            return products;
+        }
+        else
+        {
+            return products.filter(product => product.cat === category);
+        }
+    }
+
+
+
+
+
+
+
     return (
         <>
             <main>
                 <h1 style={{display: "none"}}>Shop</h1>
                 <section className='productsSection'>
-                    <h2>{category}</h2>
+                    {
+                        category === undefined
+                        ?
+                        <h2>All</h2>
+                        :
+                        <h2>{category}</h2>
+                    }
+                    <p><i>{filterProducts().length} Products found</i></p>                    
                     {
                         products
                         ?
-                        products.map(product => {
+                        filterProducts().map(product => {
                             return <Product product={product} addProductsToCart={addProductsToCart} user={user} key={product.id}/>
                         })
                         :

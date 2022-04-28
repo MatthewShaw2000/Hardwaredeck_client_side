@@ -54,53 +54,53 @@ export default function App()
   //Display Navigation sidebar function
   function displayNav()
   {
-      const menu_btn = document.getElementById("menu_btn");
-      const lines = menu_btn.querySelectorAll("div.line");
-
-      setShowNav(!showNav);
-      
-      lines.forEach(line => {
-          if(!showNav)
-          {
-              line.classList.add("cross");
-              document.body.classList.add("stopScroll");
-          }
-          else
-          {
-              line.classList.remove("cross");
-              document.body.classList.remove("stopScroll");
-          }
-
-          categoryDropdown();
-
-
-      });
+    setShowNav(!showNav);
   }
-
-
-
-  //display shop dropdown
-  function categoryDropdown()
-  {
-      const shopButton = document.getElementsByClassName('shopButton')[0];
-      const categoryDropdown = document.getElementsByClassName('categoryDropdown')[0];
-      const shopBtnArrow = document.getElementById('shopBtnArrow');
-
-      setCatDropdown(!catDropdown);
-
-      if(!catDropdown)
+  useEffect(() => {
+    const menu_btn = document.getElementById("menu_btn");
+    const lines = menu_btn.querySelectorAll("div.line");
+    
+    lines.forEach(line => {
+      if(showNav)
       {
-          shopButton.classList.add('active');
-          categoryDropdown.classList.add('activeDropdown');
-          shopBtnArrow.classList.add('activeDropdownArrow');
+          line.classList.add("cross");
+          document.body.classList.add("stopScroll");
       }
       else
       {
-          shopButton.classList.remove('active');
-          categoryDropdown.classList.remove('activeDropdown');
-          shopBtnArrow.classList.remove('activeDropdownArrow');
+          line.classList.remove("cross");
+          document.body.classList.remove("stopScroll");
+          setCatDropdown(false);
       }
+    });
+  }, [showNav]);
+
+
+
+  
+  function categoryDropdown()
+  {
+      setCatDropdown(!catDropdown);
   }
+  //display shop dropdown
+  useEffect(() => {
+    const shopButton = document.getElementsByClassName('shopButton')[0];
+    const categoryDropdown = document.getElementsByClassName('categoryDropdown')[0];
+    const shopBtnArrow = document.getElementById('shopBtnArrow');
+
+    if(catDropdown === true)
+    {
+        shopButton.classList.add('active');
+        categoryDropdown.classList.add('activeDropdown');
+        shopBtnArrow.classList.add('activeDropdownArrow');
+    }
+    else
+    {
+        shopButton.classList.remove('active');
+        categoryDropdown.classList.remove('activeDropdown');
+        shopBtnArrow.classList.remove('activeDropdownArrow');
+    }
+  }, [catDropdown]);
 
 
 

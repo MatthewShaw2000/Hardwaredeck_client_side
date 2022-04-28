@@ -29,7 +29,7 @@ export default function NavMenu({displayNav, displayNavMethod, user, setUser, ca
             },
             {
                 id: 3,
-                name: 'ram'
+                name: 'CPU'
             }
         ];
         setCategories(tempCats);

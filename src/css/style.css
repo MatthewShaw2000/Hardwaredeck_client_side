@@ -598,7 +598,7 @@ footer ul li a:hover
     flex-wrap: wrap;
     width: 100%;
 }
-.productsSection h2
+.productsSection h2, .productsSection p
 {
     width: var(--elementWidth);
     margin: auto;
@@ -611,7 +611,7 @@ footer ul li a:hover
 }
 .card
 {
-    width: 350px;
+    width: var(--elementWidth);
     height: 400px;
     margin: auto;
     margin-bottom: 15px !important;
