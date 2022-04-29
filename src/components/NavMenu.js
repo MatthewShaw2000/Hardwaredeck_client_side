@@ -12,6 +12,9 @@ import logo from '../images/logoA.png';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faCaretDown} from '@fortawesome/free-solid-svg-icons';
 
+//Page components
+import Loader from './Loader';
+
 
 export default function NavMenu({displayNav, displayNavMethod, user, setUser, categoryDropdown})
 {
@@ -20,15 +23,12 @@ export default function NavMenu({displayNav, displayNavMethod, user, setUser, ca
     useEffect(() => {
         const tempCats = [
             {
-                id: 1,
                 name: 'Motherboards'
             }, 
             {
-                id: 2,
                 name: 'graphics cards' 
             },
             {
-                id: 3,
                 name: 'CPU'
             }
         ];
@@ -48,6 +48,26 @@ export default function NavMenu({displayNav, displayNavMethod, user, setUser, ca
     }
 
 
+
+    /*
+        Function to split the products name then put back
+        together with no breaks to be put in the URL
+    */
+    function categorySplit(cat)
+    {
+        const splitCat = cat.split(' ');
+        let urlName = splitCat[0];
+        
+        if(splitCat.length > 1)
+        {
+            for(let i=1; i<splitCat.length; i++)
+            {
+                urlName += '_';
+                urlName += splitCat[i];
+            }
+        }
+        return urlName;
+    }
 
 
 
@@ -71,13 +91,15 @@ export default function NavMenu({displayNav, displayNavMethod, user, setUser, ca
                             </div>
                             <div className='categoryDropdown'>
                                 <ul>
-                                    <li><Link to="/shop">All</Link></li>
+                                    <li><Link to="/shop" state={categories}>All</Link></li>
                                     {
                                         categories
-                                        &&
+                                        ?
                                         categories.map(category => {
-                                            return <li key={category.id}><Link to={"/shop/cat/" + category.name}>{category.name}</Link></li>
+                                            return <li key={category.name}><Link to={"/shop/cat/" + categorySplit(category.name)}>{category.name}</Link></li>
                                         })
+                                        :
+                                        <Loader/>
                                     }
                                 </ul>
                             </div>

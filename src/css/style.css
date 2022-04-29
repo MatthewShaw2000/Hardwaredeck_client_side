@@ -17,7 +17,7 @@
     /*Width and height*/
     --headerHeight: 80px;
     --elementWidth: 90%;
-    --sidebarWidth: 200px;
+    --sidebarWidth: 175px;
 }
 
 
@@ -218,7 +218,7 @@ header .headerInner .menu_btn
 {
     background-image: url('../svg/footer.svg');
     position: absolute;
-    top: -9px;
+    top: -10px;
     object-fit: fill;
 }
 .navBorder
@@ -307,6 +307,7 @@ nav
     z-index: 1;
     background-color: var(--headerFooterNav);
     padding: 10px;
+    height: 100%;
 }
 .pageLogo
 {
@@ -371,7 +372,7 @@ nav hr
 }
 .activeDropdown
 {
-    left: 200px;
+    left: var(--sidebarWidth);
 }
 .activeDropdownArrow
 {
@@ -609,13 +610,14 @@ footer ul li a:hover
     width: var(--elementWidth);
     margin: auto;
 }
-.card
+.card, .productFilter
 {
     width: var(--elementWidth);
     height: 400px;
     margin: auto;
     margin-bottom: 15px !important;
     padding: 5px;
+    border-radius: var(--borderRadius);
     background-color: var(--textBackground);
     box-shadow: 2px 2px 5px 1px var(--boxShadow);
 }
@@ -647,6 +649,22 @@ footer ul li a:hover
 .button:hover
 {
     cursor: pointer;
+}
+.catFilter
+{
+    grid-area: filter;
+}
+.sortBy
+{
+    grid-area: sortBy;
+}
+.productFilter
+{
+    height: 75px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-areas: 
+        'sortBy filter';
 }
 
 
@@ -735,13 +753,11 @@ video
 {
     position: absolute;
     top: -50px;
-    left: 0;
-    width: 100%;
-    text-align: center;
-}
-.profileImg img
-{
+    left: 50%;
+    width: 100px;
     height: 100px;
+    margin-left: -50px;
+    text-align: center;
 }
 
 
@@ -756,7 +772,7 @@ video
     margin: 0;
     background-color: var(--backgroundColour);
     width: 100%;
-    height: 100%;
+    height: 200%;
     padding: 5vw;
     text-align: center;
     overflow-y: auto;

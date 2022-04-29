@@ -21,3 +21,10 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# BACKEND FILES
+/backend
+
+# STOP REACT README
+README.md
+.README.md

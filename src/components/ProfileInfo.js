@@ -15,9 +15,7 @@ export default function ProfileInfo({name, userDetails})
         <>
             <section className='accountSection userInfo'>
                 <h2>My Details</h2>
-                <div className='profileImg'>
-                    <img src={profileImg} alt='profile'/>
-                </div>
+                <img className='profileImg' src={profileImg} alt='profile'/>
                 <div className='userText'>
                     <p><strong>{name[0]} {name[1]}</strong></p>
                     <p><i>Account Type: </i> {userDetails.type}</p>
