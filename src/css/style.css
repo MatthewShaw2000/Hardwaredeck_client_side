@@ -27,6 +27,7 @@ h1
 {
     width: var(--elementWidth);
     margin: auto;
+    margin-bottom: 10px;
 }
 
 

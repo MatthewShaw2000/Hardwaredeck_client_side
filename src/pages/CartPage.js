@@ -7,6 +7,7 @@ import '../css/style.css';
 
 //Page Components
 import CartItem from '../components/CartItem';
+import Loader from '../components/Loader';
 
 
 
@@ -65,7 +66,11 @@ export default function ErrorPage()
                             return <CartItem item={item} changeQuantity={changeQuantity} removeItem={removeItem} key={item.id}/>
                         })
                         :
-                        <p><strong>No products found in cart</strong></p>
+                        !cartItems
+                        ?
+                        <Loader/>
+                        :
+                        <p><strong>No products in cart</strong></p>
                     }
                     {
                         cartItems

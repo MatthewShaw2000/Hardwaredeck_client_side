@@ -143,8 +143,8 @@ export default function App()
           <Route path="/products/view/:productName" element={<Product/>} exact/>
           <Route path="/my_account/:userName" element={<Profile/>} exact/>
           <Route path="/checkout" element={<Checkout/>} exact/>
-          <Route path="/blog" element={<Blog/>} exact/>
-          <Route path="/blog/:blogPost" element={<BlogPostPage/>} exact/>
+          <Route path="/blogs" element={<BlogPostPage/>} exact/>
+          <Route path="/blog/:blogPost" element={<Blog/>} exact/>
           <Route path="/cart" element={<Cart/>} exact/>
           <Route path="*" element={<Error/>}/>
 

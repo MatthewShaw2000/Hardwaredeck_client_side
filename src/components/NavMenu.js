@@ -106,7 +106,7 @@ export default function NavMenu({displayNav, displayNavMethod, user, setUser, ca
                         </li>
                         
                         <hr/>
-                        <li><NavLink activeClassName="active" to="/blog">Blog</NavLink></li>
+                        <li><NavLink activeClassName="active" to="/blogs">Blog</NavLink></li>
                         
                         <hr/>
                         <li>
