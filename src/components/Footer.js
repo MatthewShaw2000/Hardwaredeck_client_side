@@ -30,7 +30,7 @@ export default function Footer({user})
                         <li><b>Links</b></li>
                         <li><Link to="/">Home</Link></li>
                         <li><Link to="/shop">Products</Link></li>
-                        <li><Link to={user ? "/my_account/" + user.fname + "_" + user.lname : "/signin"} state={user}>My Account</Link></li>
+                        <li><Link to={user ? "/my_account/" + user.fname + "_" + user.lname : "/signin"}>My Account</Link></li>
                     </ul>
 
                     <ul>

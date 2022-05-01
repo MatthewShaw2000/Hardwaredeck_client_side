@@ -7,11 +7,10 @@ import '../css/style.css';
 
 //Page Components
 import CartItem from '../components/CartItem';
-import Loader from '../components/Loader';
 
 
 
-export default function ErrorPage()
+export default function CartPage()
 {
     const [cartItems, setCartItems] = useState();
 
@@ -66,10 +65,6 @@ export default function ErrorPage()
                             return <CartItem item={item} changeQuantity={changeQuantity} removeItem={removeItem} key={item.id}/>
                         })
                         :
-                        !cartItems
-                        ?
-                        <Loader/>
-                        :
                         <p><strong>No products in cart</strong></p>
                     }
                     {
@@ -84,5 +79,4 @@ export default function ErrorPage()
             </main>
         </>
     );
-
 }

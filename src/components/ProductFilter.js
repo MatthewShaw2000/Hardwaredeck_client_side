@@ -15,11 +15,11 @@ export default function ProductFilter({setSortBy, categories, setCategory})
 {
     return (
         <>
-            <div className='productFilter'>
+            <div className='listFilter'>
                 {
                     categories
                     &&
-                    <div className='catFilter'>
+                    <div className='rightColumn'>
                     <h3>Filter</h3>
                         <select name='categoriesFilter' id='categoriesFilter' onChange={(event) => setCategory(event.target.value)}>
                             <option value='All' defaultValue>All</option>
@@ -35,7 +35,7 @@ export default function ProductFilter({setSortBy, categories, setCategory})
                         </select>
                     </div>
                 }
-                <div className='sortBy'>
+                <div className='leftColumn'>
                     <h3>Sort by</h3>
                     <select name='categories' id='categories' onChange={(event) => setSortBy(event.target.value)}>
                         <option value='ascend' defaultValue>Alphabetical (A-Z)</option>

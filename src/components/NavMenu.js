@@ -43,8 +43,7 @@ export default function NavMenu({displayNav, displayNavMethod, user, setUser, ca
     {
         setUser();
         navigate('/');
-        sessionStorage.removeItem('user');
-        localStorage.removeItem('cart');
+        localStorage.clear();
     }
 
 
@@ -113,7 +112,7 @@ export default function NavMenu({displayNav, displayNavMethod, user, setUser, ca
                             {
                                 user
                                 ?
-                                <NavLink activeClassName="active" to={"/my_account/" + user.fname + "_" + user.lname} state={user}>Your Account</NavLink>
+                                <NavLink activeClassName="active" to={"/my_account/" + user.fname + "_" + user.lname}>Your Account</NavLink>
                                 :
                                 <NavLink activeClassName="active" to='/signin'>Sign in</NavLink>
                             }

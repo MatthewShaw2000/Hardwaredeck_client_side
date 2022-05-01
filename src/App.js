@@ -2,7 +2,7 @@
 import './App.css';
 
 //React Components
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect} from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 //Pages
@@ -17,6 +17,7 @@ import Cart from './pages/CartPage';
 import Error from './pages/ErrorPage';
 import Login from './pages/LoginPage';
 import Register from './pages/RegisterPage';
+import AddBlogPage from './pages/AddBlogPage';
 
 //Page Components
 import Header from './components/Header';
@@ -34,12 +35,26 @@ export default function App()
 
   const [showNav, setShowNav] = useState(false);
   const [catDropdown, setCatDropdown] = useState(false);
-  const [displayBackToTopBTN, setBackToTopBTN] = useState(false);
 
-  
+
+
+  //When before page unloads
+  //check if the page is relading
+  //if not reloading then clear local storage
+  window.onbeforeunload = function()
+  {
+    let data = window.performance.getEntriesByType("navigation")[0].type;
+    if(data !== "reload")
+    {
+      localStorage.clear();
+    }
+  }
+
+
+
   //If user has logged in set user useState
   useEffect(() => {
-    const getUser = sessionStorage.getItem('user');
+    const getUser = localStorage.getItem('user');
     if(getUser)
     {
       const loggedInUser = JSON.parse(getUser);
@@ -104,23 +119,6 @@ export default function App()
 
 
 
-
-
-  //Onscroll to display button to go back to top
-  window.onscroll = function()
-  {
-    if(document.body.scrollTop > 40 || document.documentElement.scrollTop > 40)
-    {
-      setBackToTopBTN(true);
-    }
-    else
-    {
-      setBackToTopBTN(false);
-    }
-  }
-
-
-
   return (
     <Router>
 
@@ -145,6 +143,7 @@ export default function App()
           <Route path="/checkout" element={<Checkout/>} exact/>
           <Route path="/blogs" element={<BlogPostPage/>} exact/>
           <Route path="/blog/:blogPost" element={<Blog/>} exact/>
+          <Route path="/blogs/add_blog" element={<AddBlogPage/>} exact/>
           <Route path="/cart" element={<Cart/>} exact/>
           <Route path="*" element={<Error/>}/>
 
@@ -152,7 +151,7 @@ export default function App()
           <Route path="/register" element={<Register/>}/>
         </Routes>
         
-        {displayBackToTopBTN && <BackToTop/>}
+        <BackToTop/>
 
         <Footer user={user}/>
 

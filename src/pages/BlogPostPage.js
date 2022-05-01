@@ -24,18 +24,6 @@ export default function BlogPostList()
         document.documentElement.scrollTop = 0;
         document.body.classList.remove("stopScroll");
 
-
-        const d = new Date();
-        let day = d.getDate()
-
-        const m = new Date();
-        let month = m.getMonth()
-
-        const y = new Date();
-        let year = y.getFullYear()
-
-        const fullDate = day + "/" + month + "/" + year;
-
         //temp product
         const tempBlogs = [
             {
@@ -53,7 +41,7 @@ export default function BlogPostList()
             {
                 id: 3,
                 title: 'This is blog 3',
-                date: fullDate,
+                date: '1/5/2022',
                 user: 'strongest avenger'
             }
         ]
@@ -63,7 +51,7 @@ export default function BlogPostList()
 
 
         //check if user has logged in
-        const getUser = sessionStorage.getItem('user');
+        const getUser = localStorage.getItem('user');
         if(getUser)
         {
             const loggedInUser = JSON.parse(getUser);
@@ -72,7 +60,9 @@ export default function BlogPostList()
     }, []);
 
 
-    //Sort products alphabetically and by price
+
+
+    //Sort products alphabetically and by price and return the array
     function sortBlogs()
     {
         switch(sortBy)
@@ -121,7 +111,7 @@ export default function BlogPostList()
             <main>
                 <h1>Blogs</h1>
                 <section className='blogsSection'>
-                    <SortBy setSortBy={setSortBy}/>
+                    <SortBy setSortBy={setSortBy} user={user}/>
                     {
                         blogs
                         ?

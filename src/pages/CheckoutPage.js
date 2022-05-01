@@ -14,14 +14,9 @@ export default function Checkout()
 {
     
     const [cartItems, setCartItems] = useState();
-
+    const [user, setUser] = useState();
 
     let subtotal = 0.00;
-
-    const [user] = useState(() => {
-        const getUser = sessionStorage.getItem('user');
-        return JSON.parse(getUser);
-    });
 
 
     useEffect(() => {
@@ -30,7 +25,14 @@ export default function Checkout()
         document.documentElement.scrollTop = 0;
         document.body.classList.remove("stopScroll");
 
-        
+
+        //check if user has logged in
+        const getUser = localStorage.getItem('user');
+        if(getUser)
+        {
+            const loggedInUser = JSON.parse(getUser);
+            setUser(loggedInUser);
+        }
     }, [])
 
 
@@ -39,6 +41,13 @@ export default function Checkout()
     useEffect(() => {
         setCartItems(location.state);
     }, [location])
+
+
+    function calculateVAT()
+    {
+        let vat = (subtotal/5).toFixed(2);
+        return vat;
+    }
 
 
     return (
@@ -63,20 +72,28 @@ export default function Checkout()
                 <section className='cartCheckoutSection'>
                     <h2>Delivery Address</h2>
 
-                    <label>Address</label>
-                    <input id='address' type='text' defaultValue={user.address}/>
+                    {
+                        user
+                        ?
+                        <>
+                            <label>Address</label>
+                            <input id='address' type='text' defaultValue={user.address}/>
 
-                    <label>Postcode</label>
-                    <input type='text' id='postcode' defaultValue={user.postCode}/>
-
+                            <label>Postcode</label>
+                            <input type='text' id='postcode' defaultValue={user.postCode}/>
+                        </>
+                        :
+                        <Loader/>
+                    }
                     <p>Delivery fee: <i>£5.00</i></p>
                 </section>
 
                 <section className='cartCheckoutSection'>
                     <h2>Price</h2>
                     <p>Subtotal: <i>£{subtotal}</i></p>
+                    <p>VAT: <i>£{calculateVAT()}</i></p>
                     <p>Delivery fee: <i>£5.00</i></p>
-                    <p className='checkoutTotal'><strong>Total: <i>£{subtotal + 5.00}</i></strong></p>
+                    <p className='checkoutTotal'><strong>Total: <i>£{(subtotal + parseFloat(calculateVAT()) + 5.00).toFixed(2)}</i></strong></p>
                     <button className='button' onClick={() => alert("Order has been placed")}>Order</button>
                 </section>
             </main>

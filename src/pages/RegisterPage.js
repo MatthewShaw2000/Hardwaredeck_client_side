@@ -79,6 +79,9 @@ export default function Register()
 
                     <label>Email</label>
                     <input type='email' id='email' name='email' required/>
+
+                    <label>Phone number</label>
+                    <input type='number' id='tel' name='tel'/>
                 
                     <label>Password</label>
                     <input type='password' className='password' id='password' name='password' required/>

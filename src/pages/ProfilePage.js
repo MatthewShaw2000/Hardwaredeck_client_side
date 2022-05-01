@@ -1,6 +1,6 @@
 //React Components
 import React, {useEffect, useState} from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 //CSS 
 import '../css/style.css';
@@ -12,6 +12,7 @@ import DeliveryAddress from '../components/DeliveryAddress';
 import UpdateProfile from '../components/UpdateProfile'
 import AddProduct from '../components/AddProduct';
 import EditProduct from '../components/EditProduct';
+import YourBlogs from '../components/UserBlogs';
 import Loader from '../components/Loader';
 
 
@@ -36,13 +37,16 @@ export default function Profile()
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
         document.body.classList.remove("stopScroll");
+
+        //check if user has logged in
+        const getUser = localStorage.getItem('user');
+        if(getUser)
+        {
+            const loggedInUser = JSON.parse(getUser);
+            setUser(loggedInUser);
+        }
     }, []);
 
-    //retrieve passed state data
-    const location = useLocation();
-    useEffect(() => {
-        setUser(location.state);
-    }, [location])
 
 
     useEffect(() => {
@@ -59,12 +63,21 @@ export default function Profile()
                     user
                     ?
                     <>
-                    <ProfileInfo name={name} userDetails={user}/>
-                    <DeliveryAddress/>
-                    <UpdateProfile/>
-                    <Orders/>
-                    <AddProduct/>
-                    <EditProduct/>
+                        <ProfileInfo name={name} userDetails={user}/>
+                        {
+                            user.type === "admin"
+                            ?
+                            <>
+                                <AddProduct/>
+                                <EditProduct/>
+                            </>
+                            :
+                            null
+                        }
+                        <Orders/>
+                        <DeliveryAddress/>
+                        <YourBlogs/>
+                        <UpdateProfile/>
                     </>
                     :
                     <Loader/>

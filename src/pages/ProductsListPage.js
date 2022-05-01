@@ -92,7 +92,7 @@ export default function ProductList()
 
 
         //check if user has logged in
-        const getUser = sessionStorage.getItem('user');
+        const getUser = localStorage.getItem('user');
         if(getUser)
         {
             const loggedInUser = JSON.parse(getUser);
@@ -111,8 +111,11 @@ export default function ProductList()
 
     //When products get updated store it in localstorage
     useEffect(() => {
-        localStorage.setItem('cart', JSON.stringify(cartItems));
-    }, [cartItems]);
+        if(user)
+        {
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+        }
+    }, [cartItems, user]);
 
 
 
@@ -129,7 +132,7 @@ export default function ProductList()
         {
             const product = products.find(product => product.id === productID);
             product.quantity = 1;
-            setCartItems(existingCartItems => {            
+            setCartItems(existingCartItems => {
                 return [...existingCartItems, product];
             });
         }
