@@ -100,7 +100,7 @@ export default function Login({setUser})
     return (
         <>
             <main className='loginRegisterPage'>
-                <div onClick={backToHome}>
+                <div className='pageLogoContainer' onClick={backToHome}>
                     <img src={logo} className='pageLogo' alt='Logo'/>
                 </div>
 

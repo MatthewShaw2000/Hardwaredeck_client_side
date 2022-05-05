@@ -7,8 +7,6 @@ import '../css/style.css';
 //Bootstrap
 import Carousel from 'react-bootstrap/Carousel';
 
-//Page Components
-
 //Images
 import motherboard from '../images/motherboard.jpg';
 

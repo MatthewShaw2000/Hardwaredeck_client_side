@@ -550,40 +550,26 @@ footer ul li a:hover
     width: 100%;
     height: 100%;
 }
-.infoCarousel .carousel-item
-{
-    padding-top: 5px;
-    padding-left: 10vw;
-    padding-right: 10vw;
-}
 .infoCarousel
 {
     border: solid 1px var(--navyBlue);
     box-shadow: 0 0 5px 1px var(--boxShadow) inset;
     height: auto;
 }
-.infoCarousel .carousel-item
+.infoCarousel img
 {
-    padding-top: 5px;
-    padding-left: 5vw;
-    padding-right: 5vw;
+    height: 55px;
+    object-fit: scale-down;
 }
 .infoCarousel .carouselIcon
 {
     width: 100%;
     height: 100%;
 }
-.imageCarousel
-{
-    height: 380px;
-}
-.imageCarousel .carousel-inner
-{
-    height: 368px;
-}
 .imageCarousel img
 {
-    object-fit: contain;
+    height: 360px;
+    object-fit: scale-down;
 }
 
 
@@ -679,6 +665,79 @@ footer ul li a:hover
 }
 
 
+/*--- Pagimation ---*/
+/*All nav buttons*/
+.navigationButtons
+{
+    width: var(--elementWidth);
+    height: 45px;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: auto;
+}
+/*nav button links*/
+.navigationButtons a
+{
+    padding: 10px;
+    margin: 10px;
+    border-radius: var(--borderRadius);
+    border: solid var(--borderThickness) var(--navyBlue);
+    color: black;
+    cursor: pointer;
+}
+.navigationButtons a:hover
+{
+    color: white !important;
+    background-color: var(--navyBlue);
+}
+/*Active button*/
+.navigationActive a
+{
+    color: white !important;
+    background-color: var(--navyBlue);
+}
+/*Disabled button*/
+.navigationDisabled a
+{
+    color: var(--headerFooterNav);
+    background-color: var(--headerFooterNav);
+}
+
+
+
+
+/*------ Blog post (individual) ------*/
+.blog
+{
+    width: var(--elementWidth);
+    margin: auto;
+    border-radius: var(--borderRadius);
+    background-color: var(--textBackground);
+    box-shadow: 2px 2px 5px 1px var(--boxShadow);
+    padding: 10px;
+}
+.blog .blogImage
+{
+    width: 100%;
+    height: 200px;
+    text-align: center;
+}
+.blogImage img
+{
+    height: 100%;
+    object-fit: scale-down;
+}
+.blog input[type = text]
+{
+    width: 75%;
+}
+.blog input[type = submit]
+{
+    width: 25%;
+}
+
 
 
 
@@ -772,7 +831,7 @@ video
 }
 
 /*--- Edit profile ---*/
-.accountSection
+
 
 
 
@@ -791,10 +850,14 @@ video
     margin: 0;
     background-color: var(--backgroundColour);
     width: 100%;
-    height: 200%;
+    height: 125%;
     padding: 5vw;
     text-align: center;
     overflow-y: auto;
+}
+.pageLogoContainer
+{
+    text-align: center;
 }
 .loginRegisterPage .pageLogo
 {
@@ -807,7 +870,8 @@ video
 }
 .innerLoginRegister
 {
-    width: 100%;
+    width: var(--elementWidth);
+    margin: auto;
     height: auto;
     padding: 20px;
     background-color: var(--textBackground);
@@ -876,8 +940,11 @@ video
     position: relative;
     top: 2px;
     padding-top: 1px;
-    margin-bottom: 14px;
+    text-align: center;
     line-height: 0;
+    width: var(--elementWidth);
+    margin: auto;
+    margin-bottom: 14px;
 }
 .loginRegisterPage .dividerContainer span
 {
@@ -907,12 +974,14 @@ video
 }
 .loginRegisterPage .registerLink
 {
-    width: 100%;
+    width: var(--elementWidth);
     height: 40px;
     color: black;
     display: block;
     padding: 5px;
+    margin: auto;
     text-decoration: none;
+    text-align: center;
     border-radius: var(--borderRadius);
     background-color: var(--banners);
     border: solid 1px var(--navyBlue);
@@ -1027,11 +1096,19 @@ video
     border-radius: var(--borderRadius);
     box-shadow: 2px 2px 5px 1px var(--boxShadow);
 }
-.addBlog input
+.addBlog input, .addBlog textarea
 {
     width: 100%;
     margin-bottom: 10px;
     border-radius: var(--borderRadius);
+}
+.addBlog input[type = submit]
+{
+    height: 40px;
+}
+.addBlog .button
+{
+    margin-bottom: 10px;
 }
 
 

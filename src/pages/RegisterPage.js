@@ -15,7 +15,7 @@ export default function Register()
         document.title = "Hardwaredeck | Register";
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
-        document.body.classList.add("stopScroll");
+        document.body.classList.remove("stopScroll");
     }, []);
 
 
@@ -64,7 +64,7 @@ export default function Register()
     return (
         <>
             <main className='loginRegisterPage'>
-                <div onClick={backToHome}>
+                <div className='pageLogoContainer' onClick={backToHome}>
                     <img src={logo} className='pageLogo' alt='Logo'/>
                 </div>
 

@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 //Bootstrap
-import Card from 'react-bootstrap/Card'
+import Card from 'react-bootstrap/Card';
 
 //CSS 
 import '../css/style.css';
@@ -44,7 +44,7 @@ export default function BlogPost({blog, user})
                     Posted by: {blog.user}
                 </Card.Header>
 
-                <Link to={'/blog/' + nameSplit(blog.title)}>
+                <Link to={'/blog/' + nameSplit(blog.title)} state={blog}>
                     <Card.Img variant="top" src="holder.js/100px180" />
                 </Link>
 

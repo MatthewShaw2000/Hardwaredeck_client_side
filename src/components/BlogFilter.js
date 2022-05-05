@@ -28,17 +28,16 @@ export default function SortBy({setSortBy, user})
                     </select>
                 </div>
 
-                {
-                    user
-                    ?
-                    <div className='rightColumn'>
-                        <h3>Add blog</h3>
+                <div className='rightColumn'>
+                    <h3>Add blog</h3>
+                    {
+                        user
+                        ?
                         <Link to={'/blogs/add_blog'} className='button'><FontAwesomeIcon icon={faPlus} /></Link>
-                        
-                    </div>
-                    :
-                    null
-                }
+                        :
+                        <Link to={'/signin'} className='button'><FontAwesomeIcon icon={faPlus} /></Link>
+                    }
+                </div>
             </div>
         </>
     );
