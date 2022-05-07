@@ -10,7 +10,7 @@ export default function ProfileOrders()
     return (
         <>
             <section className='accountSection'>
-                <h2>Orders</h2>
+                <h2>Your Orders</h2>
                 
             </section>
         </>

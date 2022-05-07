@@ -22,7 +22,6 @@ export default function AddBlogPage()
         document.title = "Hardwaredeck | Add blog";
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
-        document.body.classList.remove("stopScroll");
 
         //check if user has logged in
         const getUser = localStorage.getItem('user');
@@ -35,20 +34,22 @@ export default function AddBlogPage()
 
     //onchange to the toxicity check
     useEffect(() => {
+        const submit = document.getElementById('submit');
+
         if(toxicityCheck === true)
         {
             setShowMessage(true);
-            document.getElementById('submit').disabled = true;
+            submit.disabled = true;
         }
         else if(toxicityCheck === "default")
         {
             setShowMessage(false);
-            document.getElementById('submit').disabled = true;
+            submit.disabled = true;
         }
         else
         {
             setShowMessage(false);
-            document.getElementById('submit').disabled = false;
+            submit.disabled = false;
         }
     }, [toxicityCheck]);
 
@@ -62,7 +63,7 @@ export default function AddBlogPage()
     const navigate = useNavigate();
 
     //add new blog to the database
-    const addNewBlog = async event =>
+    async function addNewBlog(event)
     {
         event.preventDefault();
 
@@ -76,14 +77,11 @@ export default function AddBlogPage()
 
             const fullDate = day + '/' + month + '/' + year;
 
-            navigate('/blogs');
+            document.getElementById("confirmMessage").innerHTML = "Blog posted, please wait 5 seconds"
 
-            alert("Blog created\n" + 
-                "Published by: " + user.fname + " " + user.lname + "\n" +
-                "Published on: " + fullDate + "\n" +
-                "Blog title: " + title);
-            }
-    };
+            setTimeout(() => navigate('/blogs'), 5000);
+        }
+    }
 
 
     //import tensorflow toxicity
@@ -95,7 +93,7 @@ export default function AddBlogPage()
         // The minimum prediction confidence.
         const threshold = 0.9;
 
-        setToxicityCheck(false);
+        //setToxicityCheck("default");
 
         // Load the model. Users optionally pass in a threshold and an array of
         // labels to include.
@@ -107,8 +105,6 @@ export default function AddBlogPage()
                 // that contains the raw probabilities for each input along with the
                 // final prediction in `match` (either `true` or `false`).
                 // If neither prediction exceeds the threshold, `match` is `null`.
-
-                console.log(predictions);
 
                 for(let i=0; i<predictions.length; i++)
                 {
@@ -151,6 +147,9 @@ export default function AddBlogPage()
                             :
                             null
                         }
+
+                        <p id='confirmMessage' style={{color: "green"}}></p>
+
                         <div className='button' onClick={checkForToxicity}>Check contents</div>
                         <input type='submit' id='submit' value='Create blog'/>
                     </form>

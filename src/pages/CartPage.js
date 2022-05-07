@@ -18,7 +18,6 @@ export default function CartPage()
         document.title = "Hardwaredeck | Your cart";
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
-        document.body.classList.remove("stopScroll");
 
         const storedItems = localStorage.getItem('cart');
         if(storedItems)

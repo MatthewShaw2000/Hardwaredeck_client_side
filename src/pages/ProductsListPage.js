@@ -31,7 +31,6 @@ export default function ProductList()
         document.title = "Hardwaredeck | Shop";
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
-        document.body.classList.remove("stopScroll");
 
 
         //fetch products product
@@ -165,7 +164,6 @@ export default function ProductList()
 
     //retrieve the category from the url
     const {catName} = useParams();
-
     //Upon update of catName
     useEffect(() => {
         if(catName !== undefined)
@@ -200,7 +198,7 @@ export default function ProductList()
 
 
 
-    //When products get updated store it in localstorage
+    //When the cart get updated store it in localstorage
     useEffect(() => {
         if(user)
         {
@@ -311,7 +309,7 @@ export default function ProductList()
 
     let totalPages;
     //Slice products array to display only a select few on screen
-    function pagimation()
+    function pagination()
     {
         const filteredProducts = filterProducts();
         const numberOfRecordsVisited = page * productsPerPage;
@@ -348,15 +346,17 @@ export default function ProductList()
                     }
                     <p><i>{filterProducts().length} Products found</i></p>
                     <ProductFilter setSortBy={setSortBy} categories={categories} setCategory={setCategory}/>
-                    {
-                        products
-                        ?
-                        pagimation().map(product => {
-                            return <Product product={product} addProductsToCart={addProductsToCart} user={user} key={product.id}/>
-                        })
-                        :
-                        <Loader/>
-                    }
+                    <div className='itemContainer'>
+                        {
+                            products
+                            ?
+                            pagination().map(product => {
+                                return <Product product={product} addProductsToCart={addProductsToCart} user={user} key={product.id}/>
+                            })
+                            :
+                            <Loader/>
+                        }
+                    </div>
                 </section>
 
                 {

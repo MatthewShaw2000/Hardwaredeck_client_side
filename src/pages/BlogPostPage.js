@@ -25,7 +25,6 @@ export default function BlogPostList()
         document.title = "Hardwaredeck | Blog posts";
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
-        document.body.classList.remove("stopScroll");
 
         //temp product
         const tempBlogs = [
@@ -209,7 +208,7 @@ export default function BlogPostList()
 
     let totalPages;
     //Slice products array to display only a select few on screen
-    function pagimation()
+    function pagination()
     {
         const sortedBlogs = sortBlogs();
         const numberOfRecordsVisited = page * blogsPerPage;
@@ -241,15 +240,17 @@ export default function BlogPostList()
                 <h1>Blogs</h1>
                 <section className='blogsSection'>
                     <SortBy setSortBy={setSortBy} user={user}/>
-                    {
-                        blogs
-                        ?
-                        pagimation().map(blog => {
-                            return <BlogPost blog={blog} key={blog.id}/>
-                        })
-                        :
-                        <Loader/>
-                    }
+                    <div className='itemContainer'>
+                        {
+                            blogs
+                            ?
+                            pagination().map(blog => {
+                                return <BlogPost blog={blog} key={blog.id}/>
+                            })
+                            :
+                            <Loader/>
+                        }
+                    </div>
                 </section>
 
                 {

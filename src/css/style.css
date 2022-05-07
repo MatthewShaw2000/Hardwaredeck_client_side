@@ -92,7 +92,6 @@ header .headerInner .icons
     display: flex;
     align-items: center;
     height: 100%;
-    width: fit-content;
     float: right;
 }
 header .headerInner .icons .icon
@@ -108,17 +107,26 @@ header .headerInner .icons .icon:hover
 }
 header .headerInner .icons .icon svg
 {
-    height: 90%;
+    height: 100%;
 }
-
 header .headerInner .menu_btn
 {
     height: 50%;
     margin-left: 15px;
     color: var(--iconColor);
 }
+header a
+{
+    text-decoration: none;
+}
 
-/*Account dropdown*/
+/*--- Login text ---*/
+.headerText
+{
+    display: none;
+}
+
+/*--- Account dropdown ---*/
 .dropdownContainer
 {
     position: relative;
@@ -139,7 +147,7 @@ header .headerInner .menu_btn
     display: none;
     position: absolute;
     top: 100%;
-    left: -110%;
+    left: -47px;
     width: 130px;
     background-color: var(--textBackground);
     box-shadow: 2px 2px 5px 1px var(--boxShadow);
@@ -457,8 +465,9 @@ footer
 footer ul
 {
     padding: 10px;
-    width: 300px;
+    width: 250px;
     margin: auto;
+    margin-top: 0;
 }
 footer ul li
 {
@@ -530,12 +539,11 @@ footer ul li a:hover
 
 
 /*------ Home page ------*/
-/*--- Carousel ---*/
+/*--- Carousels ---*/
 .carouselBorder
 {
     background-color: var(--textBackground);
     padding: 5px;
-    height: auto;
 }
 .carousel .active
 {
@@ -550,22 +558,45 @@ footer ul li a:hover
     width: 100%;
     height: 100%;
 }
+
+/*--- Carousel showing general site information ---*/
 .infoCarousel
 {
+    height: 70px;
     border: solid 1px var(--navyBlue);
     box-shadow: 0 0 5px 1px var(--boxShadow) inset;
-    height: auto;
 }
-.infoCarousel img
+.infoCarousel .carouselIcons
+{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+}
+.infoCarousel .carouselIcons strong, .infoCarousel .carouselIcons h2
+{
+    width: 300px;
+    height: 55px;
+    text-align: left;
+    float: right;
+    display: flex;
+    align-items: center;
+}
+.infoCarousel .carouselIcons h2 svg
+{
+    height: 25px;
+}
+.infoCarousel img, .infoCarousel svg
 {
     height: 55px;
     object-fit: scale-down;
 }
-.infoCarousel .carouselIcon
+.infoCarousel svg
 {
-    width: 100%;
-    height: 100%;
+    color: var(--navyBlue);
 }
+
+/*--- Carousel showing images ---*/
 .imageCarousel img
 {
     height: 360px;
@@ -579,10 +610,10 @@ footer ul li a:hover
 
 /*------ Product list, Blog posts and home page deals ------*/
 /*--- Deals ---*/
-.productsSection
+.productsSection, .blogsSection
 {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
     width: 100%;
 }
@@ -597,9 +628,19 @@ footer ul li a:hover
     width: var(--elementWidth);
     margin: auto;
 }
-.card, .listFilter
+
+/*--- Deals products and blogs ---*/
+.itemContainer
 {
     width: var(--elementWidth);
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.card
+{
+    width: 100%;
     height: 400px;
     margin: auto;
     margin-bottom: 15px !important;
@@ -640,6 +681,7 @@ footer ul li a:hover
 .rightColumn
 {
     grid-area: rightColumn;
+    padding: 5px;
 }
 .rightColumn svg
 {
@@ -648,14 +690,28 @@ footer ul li a:hover
 .leftColumn
 {
     grid-area: leftColumn;
+    padding: 5px;
 }
 .listFilter
 {
+    margin: auto;
+    margin-bottom: 15px !important;
+    padding: 5px;
+    border-radius: var(--borderRadius);
+    background-color: var(--textBackground);
+    box-shadow: 2px 2px 5px 1px var(--boxShadow);
+    width: var(--elementWidth);
     height: 90px;
     display: grid;
     grid-template-columns: 50% 50%;
     grid-template-areas: 
         'leftColumn rightColumn';
+}
+.listFilter select
+{
+    border-radius: var(--borderRadius);
+    width: 100%;
+    padding: 5px;
 }
 .listFilter .button
 {
@@ -741,6 +797,42 @@ footer ul li a:hover
 
 
 
+
+
+/*------ Product (individual) ------*/
+.product
+{
+    width: var(--elementWidth);
+    margin: auto;
+    border-radius: var(--borderRadius);
+    background-color: var(--textBackground);
+    box-shadow: 2px 2px 5px 1px var(--boxShadow);
+    padding: 10px;
+}
+.product .productImage
+{
+    width: 100%;
+    height: 200px;
+    text-align: center;
+}
+.productImage img
+{
+    height: 100%;
+    object-fit: scale-down;
+}
+.productText strong
+{
+    font-size: larger;
+}
+
+
+
+
+
+
+
+
+
 /*--- Banners ---*/
 .bannerSection
 {
@@ -794,25 +886,29 @@ video
 
 
 
+
+
+
 /*------ Admin / Profile page ------*/
 .accountPage
 {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
     margin-top: calc(var(--headerHeight) + 50px);
 }
 .accountSection
 {
     background-color: var(--textBackground);
     border-radius: var(--borderRadius);
-    width: var(--elementWidth);
+    width: 100%;
     height: auto;
     margin-left: auto;
     margin-right: auto;
     box-shadow: 2px 2px 5px 1px var(--boxShadow);
     padding: 20px;
 }
+
+/*--- User details ---*/
 .userInfo
 {
     position: relative;
@@ -830,8 +926,25 @@ video
     text-align: center;
 }
 
-/*--- Edit profile ---*/
-
+/*--- Add product ---*/
+.accountSection input, .accountSection textarea, .accountSection select
+{
+    width: 100%;
+    border-radius: var(--borderRadius);
+    margin-bottom: 10px;
+}
+.accountSection textarea
+{
+    height: 150px;
+}
+.accountSection select
+{
+    padding: 5px;
+}
+.accountSection select option
+{
+    width: 50%;
+}
 
 
 
@@ -844,16 +957,22 @@ video
 /*------ Login and register pages ------*/
 .loginRegisterPage
 {
-    z-index: 4;
+    z-index: 10;
     position: absolute;
     top: 0;
     margin: 0;
     background-color: var(--backgroundColour);
     width: 100%;
-    height: 125%;
     padding: 5vw;
     text-align: center;
-    overflow-y: auto;
+}
+.loginPage
+{
+    height: 130%;
+}
+.registerPage
+{
+    height: 150%;
 }
 .pageLogoContainer
 {
@@ -994,6 +1113,13 @@ video
     height: 20px;
     text-align: right;
 }
+.confirmMessage
+{
+    display: none;
+}
+
+
+
 
 
 
@@ -1085,6 +1211,8 @@ video
 
 
 
+
+
 /*------ Add blog page ------*/
 .addBlog 
 {
@@ -1101,6 +1229,10 @@ video
     width: 100%;
     margin-bottom: 10px;
     border-radius: var(--borderRadius);
+}
+.addBlog textarea
+{
+    height: 150px;
 }
 .addBlog input[type = submit]
 {
@@ -1131,4 +1263,83 @@ video
 .errorPage svg
 {
     height: 100px;
+}
+
+
+
+
+
+
+/*---------- Responsive media queries -----------*/
+@media screen and (min-width: 430px)
+{
+    /*--- Products, blogs, deals ---*/
+    .card
+    {
+        width: 350px;
+    }
+
+    /*--- filter ---*/
+    .listFilter
+    {
+        grid-template-columns: 190px 190px;
+    }
+    .rightColumn, .leftColumn
+    {
+        width: 190px;
+    }
+
+
+
+    /*------ Account page ------*/
+    .accountSection
+    {
+        width: 350px
+    }
+}
+
+@media screen and (min-width: 740px)
+{
+    /*--- Products, blogs, deals ---*/
+    .card
+    {
+        width: 320px;
+    }
+    
+    /*--- Home page banners ---*/
+    .bannerSection video
+    {
+        width: 48%;
+    }
+
+    .banners
+    {
+        width: 48%;
+    }
+
+
+    /*--- Header ---*/
+    .userIcon
+    {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: right;
+        width: auto !important;
+    }
+    /*--- Login text ---*/
+    .headerText
+    {
+        display: flex;
+        align-items: center;
+        height: 100%;
+    }
+
+
+
+    /*------ Account page ------*/
+    .accountSection
+    {
+        width: 320px
+    }
 }

@@ -1,9 +1,6 @@
 //React Components
 import React from 'react';
 
-//Page Components
-import Loader from '../components/Loader';
-
 //CSS 
 import '../css/style.css';
 
@@ -30,7 +27,7 @@ export default function ProductFilter({setSortBy, categories, setCategory})
                                     return <option key={category.name} value={category.name}>{category.name}</option>
                                 })
                                 :
-                                <Loader/>
+                                null
                             }
                         </select>
                     </div>

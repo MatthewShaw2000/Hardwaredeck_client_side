@@ -40,12 +40,12 @@ export default function Product({product, addProductsToCart, user})
     return (
         <>
             <Card>
-                <Link to={'/products/view/' + nameSplit(product.name)}>
+                <Link to={'/products/view/' + nameSplit(product.name)} state={product}>
                     <Card.Img variant="top" src="holder.js/100px180" />
                 </Link>
                 <Card.Body>
                     <Card.Title>
-                        <Link to={'/products/view/' + nameSplit(product.name)}>
+                        <Link to={'/products/view/' + nameSplit(product.name)} state={product}>
                             {product.name}
                         </Link>
                     </Card.Title>

@@ -13,7 +13,7 @@ import '../css/style.css';
 
 
 
-export default function BlogPost({blog, user})
+export default function BlogPost({blog})
 {
     /*
         Function to split the products name then put back
@@ -50,7 +50,7 @@ export default function BlogPost({blog, user})
 
                 <Card.Body>
                     <Card.Title>
-                        <Link to={'/blog/' + nameSplit(blog.title)}>
+                        <Link to={'/blog/' + nameSplit(blog.title)} state={blog}>
                             {blog.title}
                         </Link>
                     </Card.Title>

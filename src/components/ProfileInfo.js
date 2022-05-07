@@ -9,7 +9,7 @@ import profileImg from '../images/profileImg.png';
 
 
 
-export default function ProfileInfo({name, userDetails})
+export default function ProfileInfo({user})
 {
     return (
         <>
@@ -17,10 +17,10 @@ export default function ProfileInfo({name, userDetails})
                 <h2>My Details</h2>
                 <img className='profileImg' src={profileImg} alt='profile'/>
                 <div className='userText'>
-                    <p><strong>{name[0]} {name[1]}</strong></p>
-                    <p><i>Account Type: </i> {userDetails.type}</p>
-                    <p><i>Email: </i> {userDetails.email}</p>
-                    <p><i>phone Number: </i> {userDetails.phone}</p>
+                    <p><strong>{user.fname} {user.lname}</strong></p>
+                    <p><i>Account Type: </i> {user.type}</p>
+                    <p><i>Email: </i> {user.email}</p>
+                    <p><i>phone Number: </i> {user.phone}</p>
                 </div>
             </section>
         </>

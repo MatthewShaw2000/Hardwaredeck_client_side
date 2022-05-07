@@ -7,14 +7,10 @@ import '../css/style.css';
 //Bootstrap
 import Carousel from 'react-bootstrap/Carousel';
 
-//Page Components
-
-//Images
-import trustpilot from '../images/trustpilot.png';
-
 //Font Awesome
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faTrophy} from '@fortawesome/free-solid-svg-icons';
+import {faStar} from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -25,19 +21,23 @@ export default function InfoCarousel()
             <section className='carouselBorder infoCarousel'>
                 <Carousel controls={false} indicators={false} fade={true}>
                     <Carousel.Item>
-                        <img
-                        className="d-block w-100"
-                        src={trustpilot}
-                        alt="First slide"
-                        />
+                        <div className='carouselIcons'>
+                            <FontAwesomeIcon icon={faStar} style={{color: "green"}}/>
+                            <h2>Trustpilot
+                                <FontAwesomeIcon icon={faStar} style={{color: "green"}}/>
+                                <FontAwesomeIcon icon={faStar} style={{color: "green"}}/>
+                                <FontAwesomeIcon icon={faStar} style={{color: "green"}}/>
+                                <FontAwesomeIcon icon={faStar} style={{color: "green"}}/>
+                                <FontAwesomeIcon icon={faStar} style={{color: "green"}}/>
+                            </h2>
+                        </div>
                     </Carousel.Item>
 
                     <Carousel.Item>
-                        <img
-                        className="d-block w-100"
-                        src={trustpilot}
-                        alt="First slide"
-                        />
+                        <div className='carouselIcons'>
+                            <FontAwesomeIcon icon={faTrophy}/>
+                            <strong>Award winning systems and customer service</strong>
+                        </div>
                     </Carousel.Item>
 
                     
@@ -47,11 +47,3 @@ export default function InfoCarousel()
     );
 
 }
-
-
-
-/* <Carousel.Item>
-                        <div className='carouselIcons'>
-                            <FontAwesomeIcon icon={faTrophy}/>
-                        </div>
-                    </Carousel.Item> */

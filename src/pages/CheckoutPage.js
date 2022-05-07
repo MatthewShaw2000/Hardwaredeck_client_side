@@ -23,7 +23,6 @@ export default function Checkout()
         document.title = "Hardwaredeck | Checkout";
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
-        document.body.classList.remove("stopScroll");
 
 
         //check if user has logged in
