@@ -28,6 +28,15 @@ export default function Register()
     }
 
 
+    async function register(event)
+    {
+        event.preventDefault();
+        alert("This feature will be implemented in future updates");
+
+        navigate('/');
+    }
+
+
 
     //check to see if password and confirm password match
     function passwordMatch()
@@ -59,6 +68,8 @@ export default function Register()
         }
     }
 
+
+
     return (
         <>
             <main className='loginRegisterPage registerPage'>
@@ -66,7 +77,7 @@ export default function Register()
                     <img src={logo} className='pageLogo' alt='Logo'/>
                 </div>
 
-                <form onSubmit={(event) => (event.preventDefault)} method='post' className='innerLoginRegister'>
+                <form onSubmit={() => register()} method='post' className='innerLoginRegister'>
                     <h1>Register</h1>
 
                     <label>First name</label>

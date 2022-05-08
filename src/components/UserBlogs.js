@@ -11,7 +11,7 @@ export default function YourBlogs()
         <>
             <section className='accountSection'>
                 <h2>Your Blogs</h2>
-                
+                <p>This will be updated during future development of the website.</p>
             </section>
         </>
     );

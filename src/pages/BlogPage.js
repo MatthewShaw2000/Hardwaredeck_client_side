@@ -54,7 +54,8 @@ export default function Blog()
 
                         <section className='blog'>
                             <input type="text" name="Comment" placeholder='Comment'/>
-                            <input type="submit" name="post" value="Post" onClick={() => alert("This is a placeholder for future development")}/>
+                            <input type="submit" name="post" value="Post" 
+                                   onClick={() => alert("This is a placeholder for future development")}/>
                         </section>
 
                     </>

@@ -11,7 +11,7 @@ export default function EditProduct()
         <>
             <section className='accountSection'>
                 <h2>Edit Product</h2>
-                
+                <p>This will be updated during future development of the website.</p>
             </section>
         </>
     );

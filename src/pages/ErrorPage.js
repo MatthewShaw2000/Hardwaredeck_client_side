@@ -13,7 +13,7 @@ import {faRobot} from '@fortawesome/free-solid-svg-icons';
 
 export default function ErrorPage()
 {
-
+    //upon page render
     useEffect(() => {
         document.title = "Error 404";
         document.body.scrollTop = 0;

@@ -18,7 +18,7 @@ export default function ProfileInfo({user})
                 <img className='profileImg' src={profileImg} alt='profile'/>
                 <div className='userText'>
                     <p><strong>{user.fname} {user.lname}</strong></p>
-                    <p><i>Account Type: </i> {user.type}</p>
+                    <p><i>Account Type: </i> {user.role}</p>
                     <p><i>Email: </i> {user.email}</p>
                     <p><i>phone Number: </i> {user.phone}</p>
                 </div>

@@ -5,7 +5,7 @@ import React from 'react';
 import '../css/style.css';
 
 //Video
-import exampleVid from '../videos/Example.MOV';
+
 
 
 export default function Banners()
@@ -21,7 +21,7 @@ export default function Banners()
                         <div className='banner'>Banner</div>
                     </div>
 
-                    <video src={exampleVid} controls></video>
+                    <div className='video'><strong>Video Placeholder</strong></div>
                 </div>
 
             </section>

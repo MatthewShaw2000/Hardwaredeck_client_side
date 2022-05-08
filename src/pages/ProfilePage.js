@@ -1,5 +1,6 @@
 //React Components
 import React, {useEffect, useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 
 //CSS 
 import '../css/style.css';
@@ -8,7 +9,6 @@ import '../css/style.css';
 import ProfileInfo from '../components/ProfileInfo';
 import Orders from '../components/ProfileOrders';
 import DeliveryAddress from '../components/DeliveryAddress';
-import UpdateProfile from '../components/UpdateProfile'
 import AddProduct from '../components/AddProduct';
 import EditProduct from '../components/EditProduct';
 import YourBlogs from '../components/UserBlogs';
@@ -20,7 +20,7 @@ export default function Profile()
     const [user, setUser] = useState();
 
 
-
+    const navigate = useNavigate();
     //upon first render
     useEffect(() => {
         document.body.scrollTop = 0;
@@ -33,7 +33,14 @@ export default function Profile()
             const loggedInUser = JSON.parse(getUser);
             setUser(loggedInUser);
         }
-    }, []);
+        else
+        {
+            //redirect
+            navigate('/');
+        }
+    }, [navigate]);
+
+
 
 
     //when user state is updated
@@ -73,7 +80,6 @@ export default function Profile()
                             <Orders/>
                             <DeliveryAddress/>
                             <YourBlogs/>
-                            <UpdateProfile/>
                         </>
                         :
                         <Loader/>

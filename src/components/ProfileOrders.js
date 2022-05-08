@@ -11,7 +11,7 @@ export default function ProfileOrders()
         <>
             <section className='accountSection'>
                 <h2>Your Orders</h2>
-                
+                <p>This will be updated during future development of the website.</p>
             </section>
         </>
     );

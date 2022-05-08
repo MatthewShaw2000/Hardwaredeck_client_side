@@ -17,6 +17,8 @@ export default function AddBlogPage()
     const [toxicityCheck, setToxicityCheck] = useState("default");
 
 
+    //to navigate back to a specified page
+    const navigate = useNavigate();
 
     useEffect(() => {
         document.title = "Hardwaredeck | Add blog";
@@ -30,7 +32,15 @@ export default function AddBlogPage()
             const loggedInUser = JSON.parse(getUser);
             setUser(loggedInUser);
         }
-    }, []);
+        else
+        {
+            //redirect
+            navigate('/');
+        }
+    }, [navigate]);
+
+
+
 
     //onchange to the toxicity check
     useEffect(() => {
@@ -53,14 +63,19 @@ export default function AddBlogPage()
         }
     }, [toxicityCheck]);
 
+
+
+
+
+
     //on change to the blog content
     useEffect(() => {
         setToxicityCheck("default");
     }, [content]);
 
 
-    //to navigate back to blog list page
-    const navigate = useNavigate();
+
+
 
     //add new blog to the database
     async function addNewBlog(event)
@@ -77,8 +92,9 @@ export default function AddBlogPage()
 
             const fullDate = day + '/' + month + '/' + year;
 
-            document.getElementById("confirmMessage").innerHTML = "Blog posted, please wait 5 seconds"
+            document.getElementById("confirmMessage").innerHTML = "Blog posted, please wait 5 seconds";
 
+            //after 5 seconds before redirect
             setTimeout(() => navigate('/blogs'), 5000);
         }
     }

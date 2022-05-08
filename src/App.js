@@ -12,7 +12,7 @@ import Product from './pages/ProductPage';
 import Profile from './pages/ProfilePage';
 import Checkout from './pages/CheckoutPage';
 import Blog from './pages/BlogPage';
-import BlogPostPage from './pages/BlogPostPage'
+import BlogPostPage from './pages/BlogPostsPage'
 import Cart from './pages/CartPage';
 import Error from './pages/ErrorPage';
 import Login from './pages/LoginPage';
@@ -32,23 +32,9 @@ import BackToTop from './components/BackToTop';
 export default function App() 
 {
   const [user, setUser] = useState();
-
   const [showNav, setShowNav] = useState(false);
   const [catDropdown, setCatDropdown] = useState(false);
 
-
-
-  //When before page unloads
-  //check if the page is relading
-  //if not reloading then clear local storage
-  window.onbeforeunload = function()
-  {
-    let data = window.performance.getEntriesByType("navigation")[0].type;
-    if(data !== "reload")
-    {
-      localStorage.clear();
-    }
-  }
 
 
 
@@ -61,7 +47,6 @@ export default function App()
       setUser(loggedInUser);
     }
   }, []);
-
 
 
 
@@ -91,7 +76,6 @@ export default function App()
   }, [showNav]);
 
 
-
   
   function categoryDropdown()
   {
@@ -119,9 +103,23 @@ export default function App()
 
 
 
+
+  //When before page unloads
+  //check if the page is relading
+  //if not reloading then clear local storage
+  window.onbeforeunload = function()
+  {
+    let data = window.performance.getEntriesByType("navigation")[0].type;
+    if(data !== "reload")
+    {
+      localStorage.clear();
+    }
+  }
+
+
+
   return (
     <Router>
-
       <div className='grid_container'>
 
         <Header displayNavMethod={displayNav}
@@ -154,7 +152,6 @@ export default function App()
         <BackToTop/>
 
         <Footer user={user}/>
-
       </div>
     </Router>
   );

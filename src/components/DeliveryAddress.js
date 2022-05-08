@@ -10,8 +10,8 @@ export default function DeliveryAddress()
     return (
         <>
             <section className='accountSection'>
-                <h2>DeliveryAddress</h2>
-                
+                <h2>Delivery Address</h2>
+                <p>This will be updated during future development of the website.</p>
             </section>
         </>
     );

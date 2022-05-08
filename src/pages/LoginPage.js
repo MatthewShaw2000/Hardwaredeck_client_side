@@ -51,7 +51,7 @@ export default function Login({setUser})
         lname: "Avenger",
         email: "test@test.com",
         password: "password",
-        type: "admin",
+        role: "admin",
         phone: 354456453,
         address: 'Classified',
         postCode: 'Unknown'
@@ -59,7 +59,7 @@ export default function Login({setUser})
 
 
     //test for logging in (placeholder)
-    const login = async event =>
+    async function login(event)
     {
         event.preventDefault();
 
@@ -76,7 +76,7 @@ export default function Login({setUser})
                 fname: tempUser.fname,
                 lname: tempUser.lname,
                 email: tempUser.email,
-                type: tempUser.type,
+                role: tempUser.role,
                 phone: tempUser.phone,
                 address: tempUser.address,
                 postCode: tempUser.postCode
@@ -97,7 +97,7 @@ export default function Login({setUser})
 
             setTimeout(() => navigate('/'), 5000)
         }
-    };
+    }
 
 
 

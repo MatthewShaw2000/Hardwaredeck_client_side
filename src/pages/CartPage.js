@@ -1,6 +1,6 @@
 //React Components
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 //CSS 
 import '../css/style.css';
@@ -14,6 +14,8 @@ export default function CartPage()
 {
     const [cartItems, setCartItems] = useState();
 
+    const navigate = useNavigate(); 
+    //upon page render
     useEffect(() => {
         document.title = "Hardwaredeck | Your cart";
         document.body.scrollTop = 0;
@@ -24,7 +26,14 @@ export default function CartPage()
         {
             setCartItems(JSON.parse(storedItems));
         }
-    }, []);
+
+        //check if user has logged in
+        const getUser = localStorage.getItem('user');
+        if(!getUser)
+        {
+            navigate('/');
+        }
+    }, [navigate]);
 
 
 
@@ -67,11 +76,11 @@ export default function CartPage()
                         <p><strong>No products in cart</strong></p>
                     }
                     {
-                        cartItems
-                        &&
-                        cartItems.length > 0
-                        &&
+                        cartItems && cartItems.length > 0
+                        ?
                         <Link className='button' to='/checkout' state={cartItems}>Checkout</Link>
+                        :
+                        null
                     }
 
                 </section>
